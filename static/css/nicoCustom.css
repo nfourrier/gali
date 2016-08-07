@@ -1,0 +1,270 @@
+.policeMain{
+  color: #0c5b78;
+  font-size: 18px;
+  font-weight: 600;
+}
+.policeSub{
+  color: #e37500;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0px;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-button {
+  width: 100%;
+  border: 0px;
+/*  background-color: white;
+  color: black;*/
+}
+.modal-button {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    /*font-size: 28px;*/
+}
+
+/* Modal Content/Box */
+.modal-content {
+    /*font-size: 68px;*/
+    /*background-color: #fefefe;*/
+    /*margin: 15% auto; /* 15% from the top and centered */
+    /*padding: 20px;*/
+    /*border: 1px solid #888;*/
+    /*width: 20%;  Could be more or less, depending on screen size */
+    /*pointer-events: None;*/
+}
+
+/* The Close Button */
+.modal-close {
+    /*color: #aaa;*/
+    float: right;
+    font-size: 28px;
+    /*font-weight: bold;*/
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    /*color: black;*/
+    text-decoration: none;
+    cursor: pointer;
+}
+/* Modal Header */
+.modal-header {
+    padding: 2px 16px;
+    /*background-color: #5cb85c;*/
+    /*color: white;*/
+}
+
+/* Modal Body */
+.modal-body {padding: 2px 16px;}
+
+/* Modal Footer */
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+
+.add-data {
+  margin: 40px auto 0;
+  text-align: left; }
+  .add-data h3 {
+    color: #bf6404;
+    font-size: 16px;
+    font-weight: 300; }
+  .add-data h4 {
+    vertical-align: top;
+    color: #fff;
+    font-size: 80px;
+    font-weight: 300; }
+    .add-data h4 span {
+      font-size: 20px; }
+
+
+.okButton {
+  background: #0b4970;
+/*  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);*/
+/*  -webkit-border-radius: 28;
+  -moz-border-radius: 28;*/
+  border-radius: 5px;
+  /*text-align:center;*/
+  font-family: nicoFont;
+
+  vertical-align: middle;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  color: #ecf2f6;
+  font-size: 20px;
+  height:30px;
+  display: inline-block;
+  padding: 1px 20px 1px 20px;
+  text-decoration: none;
+/*  display: inline-block;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;*/
+}
+/*.mycenter {
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+}*/
+.okButton:hover {
+  background: #ecf2f6;
+  color: #0b4970;
+/*  background-image: -webkit-linear-gradient(top, #0b4970, #54b2f0);
+  background-image: -moz-linear-gradient(top, #0b4970, #54b2f0);
+  background-image: -ms-linear-gradient(top, #0b4970, #54b2f0);
+  background-image: -o-linear-gradient(top, #0b4970, #54b2f0);
+  background-image: linear-gradient(to bottom, #0b4970, #54b2f0);*/
+  text-decoration: none;
+}
+
+
+.autocomplete-suggestions { border: 1px solid #999; background: #fff; cursor: default; overflow: auto; }
+.autocomplete-suggestion { padding: 10px 5px; font-size: 1.2em; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #f0f0f0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399ff; }
+
+
+
+ul
+{
+    list-style-type: none;
+}
+
+.area {
+  fill: steelblue;
+  clip-path: url(#clip);
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+.liveSrm {
+  border-left: none !important;
+  line-height: 1px;
+  padding-top:20px;
+  font-size: 1.5rem;
+  display:table-cell;
+  text-align: center;
+}
+
+.btn2
+ {
+  float: left;
+  position:relative;
+  bottom:0;
+  /*right:0;*/
+  text-align:left;
+  /*left:5vh;*/
+}
+
+/*
+.btn2 a {
+  fill: #535353;
+}*/
+
+/*.btn2 a:hover, a:focus {
+  fill: #f7f7f7;
+  background: #535353;
+  color: #f7f7f7;
+}*/
+
+.transparent{
+  color: rgba(1,1,1,0);
+}
+
+::selection{
+  color: rgba(0,0,0,1);
+};
+
+
+.focus circle{
+  fill: none;
+}
+.focus line{
+  stroke:purple;
+  shape-rendering:crispEdges;
+}
+
+
+.tipsy { font-size: 10px; position: absolute; padding: 5px; z-index: 100000; }
+  .tipsy-inner { background-color: #000; color: #FFF; max-width: 200px; padding: 5px 8px 4px 8px; text-align: center; }
+
+  /* Rounded corners */
+  .tipsy-inner { border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+
+  /* Uncomment for shadow */
+  /*.tipsy-inner { box-shadow: 0 0 5px #000000; -webkit-box-shadow: 0 0 5px #000000; -moz-box-shadow: 0 0 5px #000000; }*/
+
+  .tipsy-arrow { position: absolute; width: 0; height: 0; line-height: 0; border: 5px dashed #000; }
+
+  /* Rules to colour arrows */
+  .tipsy-arrow-n { border-bottom-color: #000; }
+  .tipsy-arrow-s { border-top-color: #000; }
+  .tipsy-arrow-e { border-left-color: #000; }
+  .tipsy-arrow-w { border-right-color: #000; }
+
+  .tipsy-n .tipsy-arrow { top: 0px; left: 50%; margin-left: -5px; border-bottom-style: solid; border-top: none; border-left-color: transparent; border-right-color: transparent; }
+    .tipsy-nw .tipsy-arrow { top: 0; left: 10px; border-bottom-style: solid; border-top: none; border-left-color: transparent; border-right-color: transparent;}
+    .tipsy-ne .tipsy-arrow { top: 0; right: 10px; border-bottom-style: solid; border-top: none;  border-left-color: transparent; border-right-color: transparent;}
+  .tipsy-s .tipsy-arrow { bottom: 0; left: 50%; margin-left: -5px; border-top-style: solid; border-bottom: none;  border-left-color: transparent; border-right-color: transparent; }
+    .tipsy-sw .tipsy-arrow { bottom: 0; left: 10px; border-top-style: solid; border-bottom: none;  border-left-color: transparent; border-right-color: transparent; }
+    .tipsy-se .tipsy-arrow { bottom: 0; right: 10px; border-top-style: solid; border-bottom: none; border-left-color: transparent; border-right-color: transparent; }
+  .tipsy-e .tipsy-arrow { right: 0; top: 50%; margin-top: -5px; border-left-style: solid; border-right: none; border-top-color: transparent; border-bottom-color: transparent; }
+  .tipsy-w .tipsy-arrow { left: 0; top: 50%; margin-top: -5px; border-right-style: solid; border-left: none; border-top-color: transparent; border-bottom-color: transparent; }
