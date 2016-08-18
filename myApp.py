@@ -70,29 +70,6 @@ celery = make_celery(app)
 i = inspect()
 
 
-@celery.task(name="tasks.nico")
-def add223():
-    import pandas as pd
-    print('test tasks.nico')
-    pd.DataFrame([1,2,3],columns=['la']).to_pickle('test_schedule.pkl')
-    return 1
-
-@celery.task(name="tasks.add")
-def add(x, y):
-    import pandas as pd
-    print('dans tasks.add')
-    pd.DataFrame([1,2,3],columns=['la']).to_pickle('test.pkl')
-    return x + y
-
-
-@app.route("/download/<filename>")
-def getFile(filename):
-    import time
-    time.sleep(2)
-    output = os.path.join(os.getcwd(),'data','output',filename)
-    print(output)
-    return send_file(output, attachment_filename=filename, as_attachment=True)
-
 @app.route("/slides/<option>")
 def slidesShow(option):
     return render_template("index_dasakl.html")
