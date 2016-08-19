@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="no-js">
     <head>
@@ -38,7 +39,7 @@
         <script src="../static/menu/js/modernizr.custom.js"></script>
 
           <script type="text/javascript">
-            var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+            var $SCRIPT_ROOT = "";
           </script>
 
 
@@ -82,19 +83,6 @@ c38 29 43 38 43 72 0 32 -5 42 -28 55 -31 17 -33 16 -172 -70 -65 -41 -234
 26 57 -18 c85 -27 183 -31 236 -11 104 40 206 194 262 392 25 90 30 303 9 383
 -30 115 -77 186 -149 223 -62 32 -181 35 -266 5z"/>
 </g>
-                            <!-- <g transform="scale(1)">
-                            <path  d="M34.679,82.664c0-8.314-0.297-16.838,0.092-25.332
-                                c0.321-7.005,6.263-12.492,13.928-12.549c29.556-0.22,59.12-0.478,88.669,0.023c15.467,0.262,25.232,10.891,25.783,26.52
-                                c0.33,9.355,0.316,18.735,0.076,28.096c-0.467,18.303-11.645,30.748-29.875,30.883c-35.993,0.27-71.997-0.417-107.988-1.15
-                                c-10.285-0.211-18.388-8.563-19.039-21.275C5.06,83.177,4.53,58.387,5.088,33.664C5.416,19.168,16.476,9.183,31.381,8.597
-                                c28.681-1.128,57.393-1.54,86.095-2.053c7.691-0.138,15.398,0.367,23.094,0.681c25.381,1.038,38.434,11.401,40.609,36.448
-                                c1.717,19.77,0.469,39.899-0.795,59.784c-0.691,10.9-6.369,20.252-16.682,25.549c-2.096,1.076-4.955,0.672-7.605,0.967
-                                c0-1.905-0.174-2.49,0.025-2.682c10.709-10.182,12.955-23.426,12.793-37.193c-0.145-12.252-0.605-24.575-2.131-36.716
-                                c-1.631-12.976-11.469-21.852-25.234-21.683c-29.336,0.358-58.688-0.478-88.035-0.756c-17.76-0.168-23.778,5.699-23.984,23.316
-                                c-0.104,8.95-0.24,17.909,0.01,26.853c0.369,13.135,7.562,20.512,20.551,20.771c23.935,0.477,47.875,0.658,71.813,0.889
-                                c4.371,0.042,9.951,0.404,11.137-4.676c1.311-5.611,0.713-11.736,0.342-17.6c-0.057-0.912-3.33-2.336-5.104-2.318
-                                c-24.979,0.242-49.956,0.642-74.929,1.18c-2.147,0.047-4.91,0.737-6.276,2.18C43.286,85.539,39.439,84.816,34.679,82.664z"/>
-                            </g> -->
                             </svg>
                             <span id='gameTitle'></span>
                         </a>
@@ -146,7 +134,7 @@ c38 29 43 38 43 72 0 32 -5 42 -28 55 -31 17 -33 16 -172 -70 -65 -41 -234
                             <br>
                             </p>
 
-                            <h4 align='left'>Help<br/></h4>
+                            <!-- <h4 align='left'>Help<br/></h4> -->
                             <p align='left'>
                             <!-- On left panel, circles compare minute data<br>
 
@@ -160,8 +148,9 @@ c38 29 43 38 43 72 0 32 -5 42 -28 55 -31 17 -33 16 -172 -70 -65 -41 -234
                             Light inner circle is the value from full previous period, indicating a target.<br><br><br> -->
                             </p>
                             <p align='right'>
-                            - Made by DASAKL - <br>Data Science Auckland - Gameloft<br><br>
-                            Contact: Nicolas Fourrier (Skype ID: nico.fourrier)<br>
+                            <!-- - Made by DASAKL - <br>Data Science Auckland - Gameloft<br><br> -->
+                            - Made by Nicolas Fourrier - <br>Timbre Marketing<br><br>
+                            Contact: nfourrier@timbremarketing.co.nz<br>
                             </p>
                             <svg class="chart"></svg>
                         </section>
@@ -181,12 +170,13 @@ c38 29 43 38 43 72 0 32 -5 42 -28 55 -31 17 -33 16 -172 -70 -65 -41 -234
                 <span id='modal-close-request' class="modal-close">×</span>
                 <h2>Project Selector</h2>
               </div>
-              <div class="modal-body">
+              <div class="modal-body" id="modal-body-request">
                     <ul id="requestList"></ul>
               </div>
 
               <div class="modal-footer">
-                <h3></h3>
+                <h3 id='output_format_request' value=''> </h3>
+                <!-- <div><input type="button" value="'A'" id='output_format_request' class="modal-button-footer"/></div> -->
               </div>
             </div>
         </div>
@@ -197,7 +187,7 @@ c38 29 43 38 43 72 0 32 -5 42 -28 55 -31 17 -33 16 -172 -70 -65 -41 -234
                 <span id='modal-close-project' class="modal-close">×</span>
                 <h2>Project Selector</h2>
               </div>
-              <div class="modal-body">
+              <div class="modal-body" id="modal-body-project">
                     <ul id="projectList"></ul>
               </div>
 
@@ -213,12 +203,11 @@ c38 29 43 38 43 72 0 32 -5 42 -28 55 -31 17 -33 16 -172 -70 -65 -41 -234
                 <span id='modal-close-dates' class="modal-close">×</span>
                 <h2>Dates Selector</h2>
               </div>
-              <div class="modal-body">
+              <div class="modal-body" id="modal-body-dates">
                 <!-- <p>Some text in the Modal Body</p> -->
                 <div id="dateContainer" style="text-align:center;">
                     <div id="chooseDate">
                     </div>
-
                 </div>
               </div>
 
@@ -232,11 +221,16 @@ c38 29 43 38 43 72 0 32 -5 42 -28 55 -31 17 -33 16 -172 -70 -65 -41 -234
     <script src="../static/menu/js/mlpushmenu.js"></script>
 
     <script>
+
+
+        // convert date, month, hour, minute into a string with two digits.
+        // 1 become 01, 2 become 02 and so on
         function intPad2(valueIN){
             var str = "" + valueIN
             var pad = "00"
             return pad.substring(0, pad.length - str.length) + str
         }
+        // update time and date every x miliseconds, where x is the setTimeout
         function updateTime(){
             now = new Date();
             timezoneOffset = -now.getTimezoneOffset()*1000*60;
@@ -247,96 +241,44 @@ c38 29 43 38 43 72 0 32 -5 42 -28 55 -31 17 -33 16 -172 -70 -65 -41 -234
             setTimeout(updateTime,10000);
         }
         updateTime()
-        var project_list_glob;
+
+
+        // GLOBAL VARIABLE
+        var project_list_glob; // contains the project list (to be called with AJAX)
+        // Different dimensions of the page (to be used for css, graph size ..)
         var h_total_glob = $(".container").height();
         var w_total_glob = $(".container").width();
         var w_dater = w_total_glob*0.8;
         var h_dater = h_total_glob*0.8;
-        $(".modal-content").css({
-        'top': 0.05*h_dater+"px"})
-        // var h_dater = 0.8*($(".overlay").height() - over_topMargin)
+
 
         $("document").ready(function(){
             urlParam = window.location.href
             urlMethod = urlParam.split('/')
             urlMethod = urlMethod[urlMethod.length-1]
             generateDateSelector(game_name)
-
         });
 
         urlParam = window.location.href
         url_add = urlParam.split('/')
         game_name = url_add[url_add.length-1]
         type_name = url_add[url_add.length-2]
-        console.log(game_name)
 
 
 
-        function modal_newListItem(classItem,idItem,nameItem,descriptionItem){
-            console.log(nameItem)
-            var lii = '<li id='+idItem+' title="'+nameItem+'" class='+classItem+'> <h3 class="icon icon-wallet gameChange" >'+nameItem+'</h3>'
-
-            if (typeof(descriptionItem)==='undefined'){
-                lii = lii + '</li>'
-            }
-            else{
-                lii = lii + '<p>'+descriptionItem+'</p></li>'
-            }
-            console.log(lii)
-            return $(lii)
-        }
-
-
-        function genRequestList(input){
-            // console.log($('ul#requestList li'))
-            $("#requestList li").remove()
-            // $("#requestList li:contains('request')").remove()
-            // console.log($('ul#requestList li'))
-
-            $.each(input, function(d,v){
-                $("#requestList").append(modal_newListItem('projectL',d,v['name']))
-            })
-            $("#selectedRequest").text($("#requestList li")[0].title)
-            $("#selectedRequest").attr('value',$("#requestList li")[0].id)
-
-        }
-
-        $.ajax({
-            type: 'GET',
-            url:'/projectList',
-            contentType: "application/json; charset=utf-8",
-            success: function(data){
-                project_list_glob = data;
-                $.each(data, function(d,v){
-                    $("#projectList").append(modal_newListItem('projectL',d,v['name'],v['desc']))
-
-                })
-                $("#selectedProject").text($("#projectList li")[0].title)
-                $("#selectedProject").attr('value',$("#projectList li")[0].id)
-
-                genRequestList(data[$("#projectList li")[0].id]['opt'])
-                // applyModalCSS()
-            },
-            error: function(data){
-                console.log('projectList error')
-                console.log(data)
-            }
-        });
-
-
-        var li =$('<li><a class="icon icon-wallet gameChange" href="{{url_for("testingHTML")}}"" id="testing">Fetch Data</a></li>)')
+        // left nav menu
+        var li =$('<li><a class="icon icon-wallet gameChange" href="/testing"" id="testing">Fetch Data</a></li>)')
         $('#'+"menuList").append(li);
-        var li =$('<li><a class="icon icon-wallet gameChange" href="{{url_for("logHTML")}}"" id="iaa">LOG</a></li>)')
+        var li =$('<li><a class="icon icon-wallet gameChange" href="/log"" id="iaa">LOG</a></li>)')
         $('#'+"menuList").append(li);
-        var li =$('<li><a class="icon icon-wallet gameChange" href="{{url_for("slidesShow",option="iaa")}}"" id="iaa">Slides 1</a></li>)')
+        var li =$('<li><a class="icon icon-wallet gameChange" href="/slides/iaa"" id="iaa">Slides 1</a></li>)')
         $('#'+"menuList").append(li);
-        var li =$('<li><a class="icon icon-wallet gameChange" href="{{url_for("slidesShow",option="countryfriends")}}"" id="iaa">Slides 2</a></li>)')
-        // utl ='{{url_for("slidesRetention",option="'+game_name+'")}}'
+        var li =$('<li><a class="icon icon-wallet gameChange" href="/slides/countryfriends"" id="iaa">Slides 2</a></li>)')
+        // utl ='/retention/%27+game_name+%27'
         // var li =$('<li><a class="icon icon-wallet gameChange" href='' id="iaa">Ice Age Adventure</a></li>)')
 
         $('#'+"menuList").append(li);
 
-        console.log(urlParam,game_name)
         if(game_name=='countryfriends'){
             $(".panelContainer").css({
                 "width":"30%"
@@ -353,6 +295,7 @@ c38 29 43 38 43 72 0 32 -5 42 -28 55 -31 17 -33 16 -172 -70 -65 -41 -234
                 "left":"30%"
             })
         }
+
         var headerHeight = $(".codrops-top").height();
         $(".logoTest").css({
                 "width":(headerHeight/3*(186.885/136.885))+"px",
@@ -386,125 +329,12 @@ c38 29 43 38 43 72 0 32 -5 42 -28 55 -31 17 -33 16 -172 -70 -65 -41 -234
     </script>
 
     <script>
-    $(window).load(function(){
-        applyModalCSS()
-            $("#projectList li").on('click',function(e){
-                    console.log("click project")
-                    $("#selectedProject").text($(this)[0].title)
-                    $("#selectedProject").attr('value',$(this)[0].id)
-                    genRequestList(project_list_glob[$(this)[0].id]['opt'])
-                    applyModalCSS()
-                })
-            // $("#requestList li").click(function(e){
-            //         console.log('click request')
-            //         console.log($("#requestList"))
-            //         console.log()
-            //         $("#selectedRequest").text($(this)[0].title)
-            //         $("#selectedRequest").attr('value',$(this)[0].id)
-            //         // genRequestList(data[$(this)[0].id]['opt'])
-            //         // applyModalCSS()
-            // })
-            $("#requestList").on('click','li',function(e){
-                    console.log('click request')
-                    console.log($("#requestList"))
-                    console.log()
-                    $("#selectedRequest").text($(this)[0].title)
-                    $("#selectedRequest").attr('value',$(this)[0].id)
-                    // genRequestList(data[$(this)[0].id]['opt'])
-                    // applyModalCSS()
-            })
 
-
-
-            $('.modal-button[overlay="runRequest"]').on('click', function() {
-                var request_params = {};
-                request_params['start_date'] = $('#date_start_playdates_main').attr('value')
-                request_params['end_date'] = $('#date_end_playdates_main').attr('value')
-                request_params['project_name'] = $("#selectedProject").attr("value")
-                request_params['request_name'] = $("#selectedRequest").attr("value")
-                console.log(request_params)
-                URL = "/project/" + 'camp'//request_params["project_name"]
-                console.log(URL)
-                $.ajax({
-                    type: 'POST',
-                    //url: $SCRIPT_ROOT + "/ajx-generate-checkbox",
-                    url: URL,
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify({
-                        request_params,
-                    }),
-                    success: function(data){
-                            var endCallDate = new Date();
-                            console.log("SUCCESS: "+" executed")
-                            console.log(request_params)
-                            console.log(data)
-                            if(data['download'] == 1){
-                                filename = data['filename']
-                                URL_download = '/download/'+filename;
-                                // var a = document.createElement("a");
-                                // a.href = '/download/'+filename;
-                                // a.download = "data.xls";
-                                // document.body.appendChild(a);
-                                // a.click();
-                                // a.remove();
-                                window.open(URL_download, '_blank');
-                            }
-                            console.log('over')
-                    },
-                    error: function(data){
-                            var endCallDate = new Date();
-                            console.log("FAIL: "+request_params)
-                            console.log(request_params)
-                            console.log(data)
-
-                    }
-                });
-
-            })
-
-        })
     </script>
 
 
     <script>
-        $(window).load(function(){
-            console.log('doc ready for modal')
-        var myMenu = new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
 
-        function modal(modalID,spanClickClose){
-             // Get the modal
-            var modal = document.getElementById('myModal-'+modalID);
-            // Get the button that opens the modal
-            var btn = document.getElementById("modal-button-"+modalID);
-            // Get the <span> element that closes the modal
-            var span = document.getElementById("modal-close-"+modalID);
-            // When the user clicks on the button, open the modal
-            btn.onclick = function() {
-                    modal.style.display = "block";
-            }
-            span.onclick = function() {
-                    modal.style.display = "none";
-            }
-            // When the user clicks on <span> (x), close the modal
-            if(spanClickClose==true){
-                modal.onclick = function(){
-                    modal.style.display = "none";
-                }
-            }
-        }
-        modal('dates',false);
-        modal('project',true);
-        modal('request',true);
-
-        window.onclick = function(event) {
-            ['dates','project','request'].forEach(function(d,v){
-                modal = document.getElementById('myModal-'+d)
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            })
-        }
-    })
         //     if (event.target == modalP) {
         //         modalP.style.display = "none";
         //     }
@@ -512,6 +342,7 @@ c38 29 43 38 43 72 0 32 -5 42 -28 55 -31 17 -33 16 -172 -70 -65 -41 -234
     </script>
 
     <!-- <script src='../static/js/graphs_akl.js' type='text/javascript'></script> -->
+    <script src='../static/js/modal.js' type='text/javascript'></script>
     <script src='../static/js/saveSvgAsPng.js' type='text/javascript'></script>
     <script src='../static/js/genericGraphsFct.js'></script>
     <!-- // <script src='../static/js/heroPanel.js' type='text/javascript'></script> -->
