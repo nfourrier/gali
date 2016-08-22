@@ -1,21 +1,23 @@
 from __future__ import absolute_import
 import sys
+from flask import Flask, Blueprint, abort, jsonify, request, session, render_template
+from flask import url_for, make_response, send_file
+from celery import Celery
+from celery import current_app
+from celery.task.control import inspect
+
+
 from os import path, environ
 import os
 import json
-from flask import Flask, Blueprint, abort, jsonify, request, session, render_template
-from flask import url_for, make_response, send_file
-import json
 from bson import json_util
 from bson.json_util import dumps
-import settings
-from celery import Celery
-import datetime as dt
 from collections import defaultdict
+import datetime as dt
 import time
-from celery import current_app
-from celery.task.control import inspect
 import importlib
+
+import settings
 from data.project import PROJECT
 
 
