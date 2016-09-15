@@ -40,9 +40,6 @@ var SVGMask = (function() {
         xDomain = this._x.domain();
         minX = xDomain[0];
         maxX = xDomain[1];
-        // console.log('redraw this',this)
-        // console.log(this._y.domain())
-        // console.log(this._x.domain())
         lp = {
             l: this._x(minX),
             t: this._y(minY),
@@ -69,9 +66,6 @@ var SVGMask = (function() {
         xDomain = this._x.domain();
         minX = xDomain[0];
         maxX = xDomain[1];
-        // console.log('redraw this',this)
-        // console.log(this._y.domain())
-        // console.log(this._x.domain())
         mp = {
             l: this._x(this.from),
             t: this._y(minY),
@@ -79,8 +73,6 @@ var SVGMask = (function() {
             b: this._y(maxY)
         };
         this.middle.attr("points", "" + mp.l + "," + mp.t + "  " + mp.r + "," + mp.t + "  " + mp.r + "," + mp.b + "  " + mp.l + "," + mp.b);
-        // this.right.attr("points", "" + rp.l + "," + rp.t + "  " + rp.r + "," + rp.t + "  " + rp.r + "," + rp.b + "  " + rp.l + "," + rp.b);
-        // this.middle.attr("points", "" + mp.l + "," + mp.t + "  " + mp.r + "," + mp.t + "  " + mp.r + "," + mp.b + "  " + mp.l + "," + mp.b);
         return this;
     };
 
@@ -103,7 +95,6 @@ var SVGMask = (function() {
 })();
 
 function generateDateSelector(game_nameIN){
-  console.log("llaalalalalla")
   queue()
               .defer(d3.json, "/loadADDjson/"+'iaa'+"/daily_handle")
               .defer(extraGraphParam,
@@ -286,10 +277,8 @@ function timeSeriesWithSlide(error,data,extraParam){
 
   butWidth = extraParam.width/10
   butHeight = extraParam.height/20
-  // console.log(butWidth)
 
   var makeSortButton = function(extent, rev,pos, textIN) {
-    // console.log(pos * butWidth + butWidth*0.2)
     A = svg.append('g')
           .attr("transform", "translate("+(pos * (butWidth + butWidth*0.4)) +"," + 0+ ")")
           .on('click', function() {
