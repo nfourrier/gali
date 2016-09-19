@@ -15,9 +15,7 @@ var d3circle = function(id, width, height, color, colorText, innerF, data, title
     this.spacing = 0.1;
     this.arc = d3.svg.arc()
       .startAngle(0)
-      //
       .innerRadius(function(d) { return d.index * this.radius; })
-      //.outerRadius(function(d) { return (d.index + this.spacing) * this.radius; })
       ;
 }
 
@@ -40,53 +38,14 @@ d3circle.prototype.getSpacing = function(fieldNameIN){
 
 
 
-// function cumulativeNumbers(ndxIN, id_html, group_dc, pd_column, select_column, select_value){
-
-//     var groupNDX = ndxIN.groupAll().reduceSum(function(d) {
-//             if(d[select_column]==select_value){
-//                 return d[pd_column];
-//             }
-//             else{
-//                 return 0;
-//             }
-//         });
-//     var fieldID = dc.numberDisplay(id_html,group_dc);
-//     fieldID
-//         .valueAccessor(function(d){return d; })
-//         .group(groupNDX)
-//         .formatNumber(d3.format(".4s"));
-//     return fieldID
-// }
-
-
 function extraParamCircles(inputCircles, timeIN,callback){
     output = inputCircles
     callback(null,[output,timeIN])
 }
 
 function makePanel(error, yesterdayJson, todayJson, objectIN) {
-    console.log(todayJson.length)
-    // function AjaxCall() {
-    //     $.ajax(
-    //     {
-    //         type: 'POST',
-    //         contentType: "application/json; charset=utf-8",
-    //         url: 'Home.aspx/Server_HelloWorld',
-    //         datatype: 'json',
-    //         success: function (result) { console.log(result.d); }
-    //     })
-
-    // }
-    // console.log(yesterdayJson)
-    // console.log(todayJson)
     circlesIN=objectIN[0]
     dateLimit = getFakeToday()
-    // console.log(dateLimit)
-    // console.log(dateLimit)
-
-    // console.log(24-dateLimit.getHours()-1,60-dateLimit.getMinutes())
-    // console.log(dateLimit.getMinutes())
-
     var addDAU = function(p, d){return p + d.AU;},
         remDAU = function(p, d){return p - d.AU;},
         reduceREV = function (p,v) {return v.AU;},
