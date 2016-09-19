@@ -59,44 +59,34 @@ function makePanel(error, yesterdayJson, todayJson, objectIN) {
 
     timezoneOffset = timezoneOffset.getTimezoneOffset()*60*1000
     yesterdayJson.forEach(function(d) {
-        //d["date"] = new Date(d["date"]*1000+timezoneOffset+24*3600*1000);
         tmp_date = new Date(d["date"]*1000+timezoneOffset);
         d["date"] = tmp_date
         d["field"] = "yesterday"
     });
     var maxDate = new Date("December 03, 1987 11:13:00")
     todayJson.forEach(function(d,v) {
-        // console.log(d["date"])
         var tmp_date  = new Date(d["date"]*1000+timezoneOffset);
-        // console.log(tmp_date,timezoneOffset)
         d["date"] = tmp_date
         d["field"] = "today"
-        // console.log(d)
         if(d["date"]>maxDate){maxDate = d["date"];}
 
     });
-    // console.log(todayJson)
-    // console.log(maxDate)
-
     if(objectIN[1]=='daily'){
         timeLimit = dateLimit.getHours()*100+dateLimit.getMinutes();
         var timeLimitRef = timeLimit;
         maxTime = maxDate.getHours()*100+maxDate.getMinutes();
-        // console.log(maxTime,timeLimit)
         if(maxTime<timeLimit){
             timeLimit = maxTime;
             dateLimit = maxDate;
         }
     }
     else if(objectIN[1]=='weekly'){
-        //1 for saturday, 2 for friday
         shift_weekDay = 2 // 2
         timeLimit = (dateLimit.getDay()+shift_weekDay)%7-1
         console.log(timeLimit)
     }
 
 
-    // console.log(dateLimit)
     if(objectIN[1]=='daily'){
         $('.timeLeft_'+objectIN[1]).empty()
         $('.todaysDate').empty()
@@ -123,25 +113,6 @@ function makePanel(error, yesterdayJson, todayJson, objectIN) {
         $('.timeLeft_'+objectIN[1]).append(6-timeLimit+" days left")
     }
 
-//     for(var idx=todayJson.length-1;idx>-1;idx--){
-//         var thisDate = todayJson[idx]["date"]
-//         if(thisDate.getHours()*100+thisDate.getMinutes()>timeLimit){
-//                 todayJson.splice(idx,1)
-// //                yesterdayJson.splice(idx,1)
-//         }
-//     }
-
-
-
-
-
-    // $('#targetText2').empty()
-    // $('#targetText2').append('<span class="data">'+avg[0]+'</span>');
-
-
-    // console.log(todayJson.length)
-    // console.log("new data date")
-
 
 
     allData = yesterdayJson.concat(todayJson)
@@ -149,7 +120,6 @@ function makePanel(error, yesterdayJson, todayJson, objectIN) {
     var ndx = crossfilter(allData);
 
     var addNoTime = function(input,value){
-        // console.log(input.dau,value.AU,input.count)
         input.dau += value.AU;
         input.dau2 += value.DAU;
         input.hc_spent += value["Hard Currency spent"];
