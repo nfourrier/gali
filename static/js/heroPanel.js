@@ -83,7 +83,6 @@ function makePanel(error, yesterdayJson, todayJson, objectIN) {
     else if(objectIN[1]=='weekly'){
         shift_weekDay = 2 // 2
         timeLimit = (dateLimit.getDay()+shift_weekDay)%7-1
-        console.log(timeLimit)
     }
 
 
@@ -113,8 +112,6 @@ function makePanel(error, yesterdayJson, todayJson, objectIN) {
         $('.timeLeft_'+objectIN[1]).append(6-timeLimit+" days left")
     }
 
-
-
     allData = yesterdayJson.concat(todayJson)
 
     var ndx = crossfilter(allData);
@@ -139,24 +136,12 @@ function makePanel(error, yesterdayJson, todayJson, objectIN) {
     var addIN = function(input, value){
             var thisDate = value.date;
             if(objectIN[1]=='weekly'){
-                // console.log(value.date,value["Hard Currency spent"])
-                // console.log(value.field,value.date)
-                // console.log(timeLimit,getThisTime(thisDate))
-                // console.log(value, getThisTime(thisDate),timeLimit)
             }
             if(getThisTime(thisDate)<=timeLimit){
                 if(objectIN[1]=='weekly'){
-                console.log('----',value.field,value.date,value["Hard Currency spent"])
-                // console.log(value, getThisTime(thisDate),timeLimit)
                 }
-
-                // if(value.date.getMinutes()==05){
-                //     console.log(value.date.getHours(),input.AU)
-                // }
-                // console.log(thisDate.getHours()*100+thisDate.getMinutes())
                 input = addNoTime(input,value);
             }
-            // console.log(input)
             return input;
     }
     var initIN = function(){
@@ -183,8 +168,6 @@ function makePanel(error, yesterdayJson, todayJson, objectIN) {
     var initValue = initIN()
     sum[yesterdayJson[0].field+"_all"]= yesterdayJson.reduce(addNoTime, initValue);
 
-
-    console.log(sum)
     if(sum[yesterdayJson[0].field+"_all"].count!=1440){corruptedData["referenceData"]=1}
     if(sum[todayJson[0].field].count!=(Math.floor(timeLimit/100)*60+timeLimit%100+1)){corruptedData["todayData"]=1}
     if(sum[todayJson[0].field].count!=(Math.floor(timeLimitRef/100)*60+timeLimitRef%100+1)){corruptedData["todayData"]=2}
@@ -212,7 +195,6 @@ function makePanel(error, yesterdayJson, todayJson, objectIN) {
 
     // Update panel circles
     for(var fieldNameIN in circlesIN){
-    // circlesIN.forEach(function(fieldNameIN){
         var referenceArc = {
             index: 0.7,
             text: "reference",
@@ -227,7 +209,6 @@ function makePanel(error, yesterdayJson, todayJson, objectIN) {
             valueBack: circlesIN[fieldNameIN].maximumRad,
             maximum: circlesIN[fieldNameIN].maximumRad}
 
-        //if(fieldNameIN=="hc_spent"){console.log(todaySum)}
         updateProgressCircle(
             circlesIN[fieldNameIN],
             referenceArc,
@@ -320,48 +301,6 @@ function makePanel(error, yesterdayJson, todayJson, objectIN) {
 
 
 
-// $(".dropdown dt a").on('click', function () {
-//           $(".dropdown dd ul").slideToggle('fast');
-//       });
-
-//       $(".dropdown dd ul li a").on('click', function () {
-//           $(".dropdown dd ul").hide();
-//       });
-
-//       function getSelectedValue(id) {
-//            return $("#" + id).find("dt a span.value").html();
-//       }
-
-//       $(document).bind('click', function (e) {
-//           var $clicked = $(e.target);
-//           if (!$clicked.parents().hasClass("dropdown")) $(".dropdown dd ul").hide();
-//       });
-
-
-//       $('.mutliSelect input[type="checkbox"]').on('click', function () {
-
-//           var title = $(this).closest('.mutliSelect').find('input[type="checkbox"]').val(),
-//               title = $(this).val() + ",";
-
-//           if ($(this).is(':checked')) {
-//               var html = '<span title="' + title + '">' + title + '</span>';
-//               $('.multiSel').append(html);
-//               $(".hida").hide();
-//           }
-//           else {
-//               $('span[title="' + title + '"]').remove();
-//               var ret = $(".hida");
-//               $('.dropdown dt a').append(ret);
-
-//           }
-//       });
-
-
-
-
-
-
-
 
 function innerTextFormat(stringIN){
     if(stringIN=="revenue"){return function(number){return d3.format('.3s')(number)+'\u20AC'};}
@@ -446,24 +385,7 @@ circleFieldsName.forEach(function(d){
 
 
 
-//var slideCircle = new d3circle("radGraph",700,700,colorsCircle,innerTformat,dataCircle1,"slide circle");
 $("document").ready(function(){
-    // var game_name = "iaa"
-    // var game_fullname = "Ice Age Adventure"
-    // $('#gameTitle').append(game_fullname);
-    // $('.gameChange').click(function(){
-    //     game_name = "farm_folks"
-    //     game_fullname = "Farm Folks"
-    //     $('#gameTitle').empty()
-    //     $('#gameTitle').append(game_fullname);
-    //     console.log(testMenu)
-    //     myMenu._resetMenu()
-    // })
-    // $('#gameTitle').remove();
-    // console.log($('#gameTitle'))
-    // $('#gameTitle').append(game_fullname);
-
-
     var delay_utc = 12*3600;
     var delay_gmmdb = 3*3600;
     var delay_studio = 3*3600;
@@ -487,17 +409,14 @@ $("document").ready(function(){
 
 
     // circleFieldsName.forEach(function(d){
-    //     console.log(d)
     //     makeProgressCircle(panelCircles[d],0.01);
     // })
     // function panelMaster(){
-    //     console.log("panel function - update circles")
     //     queue()
     //         .defer(d3.json, getDailyFlaskRoute(game_name,dayM7Date))
     //         .defer(d3.json, getDailyFlaskRoute(game_name,todayDate))
     //         .defer(extraParamCircles, panelCircles, 'daily')
     //         .await(makePanel)
-    //     //makeAKLgraphs("ok",jsonData1,jsonData2)
     //     setTimeout(panelMaster,10000);
     // }
     // panelMaster()
@@ -506,7 +425,6 @@ $("document").ready(function(){
 
     $("#result").load("/tmpLifetime")
     $("#nav-zoom").hide()
-    // console.log($("#nav-zoom"))
     //generateADDdata('iaa',"ggiDAU")
 
 
