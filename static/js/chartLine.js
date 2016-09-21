@@ -1,9 +1,4 @@
 function chartLine(error,dataJson,extraParam){
-    console.log(extraParam)
-    console.log(extraParam.yKey)
-
-    // console.log(dataJson)
-    // console.log(extraParam)
     var timezoneOffset = new Date(dataJson[0].date*1000)
     var yList = [];
     var yListTmp = [];
@@ -18,7 +13,6 @@ function chartLine(error,dataJson,extraParam){
         isDate = true
     }
 
-    // if(extraParam.groupKey!=dataJson[0])
     if(!(extraParam.groupKey in dataJson[0])){
         dataJson.forEach(function(d){
             d[extraParam.groupKey] = "myResult"
@@ -37,7 +31,6 @@ function chartLine(error,dataJson,extraParam){
         sortKey = extraParam.yKey
     }
     dataJson.forEach(function(d) {
-        // if(extraParam.htmlID=="Day 14 retention per shop"){console.log(d)}
         if(isDate){
             if(xList.indexOf(Number(d[extraParam.xKey]*1000))==-1){
                 xList.push(d[extraParam.xKey]*1000)
@@ -86,10 +79,8 @@ function chartLine(error,dataJson,extraParam){
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     xList.sort(function(a,b){return a-b;})
-    console.log(xList)
     yList.sort(function(a,b){return b[1]-a[1]})
     yList = yList.map(function(d){return d[0]})
-    // console.log(yList,yList.indexOf("Other-"))
 
     if(yList.indexOf("Other-")>-1){
         yList.splice(yList.indexOf("Other-"),1)
@@ -105,13 +96,8 @@ function chartLine(error,dataJson,extraParam){
             return yList.indexOf(a)-yList.indexOf(b)
         })
         .entries(dataJson);
-    console.log(dataNest)
-    // dataNest.forEach(function(d){console.log(d)})
         if(yList.length>=maxLengthList-1){
             esssai = dataNest.reduce(function(rec,other,idx){
-                // console.log(other.key,idx,other.values)
-                // console.log(rec.values[5]["date"],rec.values[5]["Value"],rec.values[5]["AU_"])
-
                 var yKey = extraParam.yKey
                 var xKey = extraParam.xKey
                 var gpKey = extraParam.groupKey
@@ -121,13 +107,11 @@ function chartLine(error,dataJson,extraParam){
                         rec.key = "Other"
                         if(isDate){
                             if(rec.values[xdx][xKey].getTime()==(new Date(xList[xdx])).getTime()){
-                                // console.log(rec.values[xdx][gpKey])
                                 rec.values[xdx][gpKey] = "Other"
                                 if(isPercent == 1){
                                     rec.values[xdx][yKey] = rec.values[xdx][yKey]
                                 }
                                 rec.values[xdx][xKey] = new Date(xList[xdx]);
-                                // rec.values[xdx][yKey] = 0
                             }
                             else{
                                 tmpObj = {}
@@ -143,7 +127,6 @@ function chartLine(error,dataJson,extraParam){
                 if(idx>maxLengthList){
                     otherCounter = 0
                     for(var xdx=0;xdx<xList.length;xdx++){
-                        // if(extraParam.htmlID=="day7_ggi_akl_line"){console.log(xdx,xKey,other.values[xdx])}
                         if(rec.values[xdx][xKey].getTime()==other.values[xdx][xKey].getTime()){
                             if(isPercent == 1){
 
@@ -178,7 +161,6 @@ function chartLine(error,dataJson,extraParam){
 
     dataNest.forEach(
         function(d,i){
-            console.log(d)
             if(d.values.length > lastXvalues-1){
                 d.values = d.values.splice(Math.max(0,d.values.length-lastXvalues),d.values.length-1)
             }
