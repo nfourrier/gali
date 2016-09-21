@@ -169,15 +169,12 @@ function chartLine(error,dataJson,extraParam){
     if(isDate){
         var x = d3.time.scale()
             .domain([xList[Math.max(xList.length-lastXvalues,0)],xList[xList.length-1]])
-            // .domain([xList[0],xList[xList.length-1]])
             .range([0, width]);
     }
     else{
         var x = d3.scale.ordinal().rangePoints([0, width]);
-        x.domain(xList.map(function(d) { console.log(d);return d; }));
+        x.domain(xList.map(function(d) {return d; }));
     }
-    // console.log(xList[Math.max(xList.length-lastXvalues,0)],width,lastXvalues)
-    console.log(x('knee'),x('anckle'))
     yMax = d3.max(dataJson, function(d){return +d[extraParam.yKey]})
     yMin = d3.min(dataJson, function(d){return +d[extraParam.yKey]})
     yMin = yMin - 0.1*Math.abs(yMin)
@@ -242,23 +239,6 @@ function chartLine(error,dataJson,extraParam){
 
     dataNest.forEach(
         function(d,i){
-
-            // console.log(d.values.splice(0,10))
-            // console.log(d)
-            // svg.append("path")
-            // .attr("class", "line")
-            // .style("fill-opacity","0.0")
-            // .attr('stroke-width', function(d) { return 0.5*height/(100+0.5*xList.length); })
-            // .style("stroke", function() { // Add the colours dynamically
-            //     return d.color = color(i); })
-            // .attr("id", extraParam.htmlID+'_tag'+d.key.replace(/\s+/g, '')) // assign ID
-            // .attr("d", priceline(d.values))
-            // .on("mouseover",mouseover)
-            // .on("mouseout",mouseout)
-            // .on("mousemove",function(d){
-            //     console.log(d)
-            // })
-            ;
             svg.selectAll('circle'+i).data(d.values)
             .enter().append('svg:circle')
             .attr("class", function (v,vv) {return extraParam.htmlID+'_cir'+i+"_"+d.key.replace(/\s+/g, '')}) // assign ID
@@ -301,7 +281,6 @@ function chartLine(error,dataJson,extraParam){
                 // Update whether or not the elements are active
                 d.active = active;
                 })
-            // .text(d.key);
             .text(function(){
                 var keyName = d.key;
                 if(keyName.split(' ').length>1){
@@ -312,11 +291,6 @@ function chartLine(error,dataJson,extraParam){
                 }
             })
         })
-
-// console.log($(".dailyPAU_country_akl_line_cir4China"))
-
-
-
 
         var li = {
         w: 0.2*width, h: 0.1*width/1.5, s: 0.01*width, r: 0.01*width
@@ -351,20 +325,15 @@ function chartLine(error,dataJson,extraParam){
         .attr("dy", "-1em");
 
     function mouseover(d) {
-        // console.log(yList)
-        // console.log(this,typeof(this))
-        // console.log(this['style']["stroke"])
         focus.style("display",null)
         focus.select("rect")
             .attr("transform", "translate(" + (x(d[extraParam.xKey])-li.w) + "," + (y(d[extraParam.yKey])-li.h) + ")")
             .attr("stroke",this['style']["stroke"])
         focus.select("text.textX")
-            // .attr("transform", "translate(" + (x(d[extraParam.xKey])-li.w) + "," + (y(d[extraParam.yKey]))-li.h + ")")
             .attr("y",y(d[extraParam.yKey])-1*(li.h/3))
             .attr("x",x(d[extraParam.xKey])-li.w*0.95)
             .attr("text-anchor",'start')
             .text(extraParam.xKey + ": "+d.x)
-
         focus.select("text.textY")
             .attr("y",y(d[extraParam.yKey])+0.5*(li.h/3))
             .attr("x",x(d[extraParam.xKey])-li.w*0.95)
