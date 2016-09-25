@@ -7,7 +7,6 @@ function getCheckedList(fieldName) {
   $('input.'+fieldName+':checked').each(function() {
     localArray.push($(this).val());
   });
-  //localArray = localArray.toString();
   return localArray;
 }
 
@@ -20,24 +19,13 @@ function addtoList(fieldName,whatto, state){
                 'value="' + whatto + '" '+
                 'class="checkItem checkbox-custom" overlay="'+fieldName+'"/>' +
                     '<label class="checkbox-custom-label" for="' + whattoreplace+"_"+fieldName + '">'+whatto+'  </label>');
-            // var li = $(''+
-            //     '<label for="'+whattoreplace+'" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">'+
-            //         '<input overlay="'+fieldName+'"type="checkbox" id="'+whattoreplace+'" class="checkItem mdl-checkbox__input">'+
-            //         '<span class="mdl-checkbox__label">'+whatto+'</span>'+
-            //     '</label>'
-            //     )
+
         }
         else{
             var li = $('<input type="checkbox" checked="true" id="' + whattoreplace+"_"+fieldName +'" value="' + whatto + '" class="checkItem checkbox-custom" overlay="'+fieldName+'"/>' + '<label class="checkbox-custom-label" for="' + whattoreplace+"_"+fieldName + '">'+whatto+'  </label>');
-            // var li = $(''+
-            //     '<label for="'+whattoreplace+'" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">'+
-            //         '<input checked="true" overlay="'+fieldName+'" type="checkbox" id="'+whattoreplace+'" class="checkItem mdl-checkbox__input">'+
-            //         '<span class="mdl-checkbox__label">'+whatto+'</span>'+
-            //     '</label>'
-            //     )
         }
         $('#'+fieldName+'List').append(li);
-        // console.log($('#'+fieldName+'List'))
+
 }
 
 function supfromList(fieldName,whatto){
