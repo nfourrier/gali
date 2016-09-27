@@ -44,18 +44,8 @@ function genList(fieldName, addName){
         var li = $(''+
              '<input id="'+fieldName+'_all" type="checkbox"checked class="checkAll checkbox-custom" overlay='+fieldName+' /> '+
              '<label class="checkbox-custom-label" for="'+fieldName+'_all">'+'All'+'  </label>')
-        // var li = $(''+
-        // '<li>'+
-        // '<label for="all_'+fieldName+'" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">'+
-        //     '<input checked="true" type="checkbox" id="all_'+fieldName+'" class="checkAll mdl-checkbox__input"  overlay='+fieldName+'>'+
-        //     '<span class="mdl-checkbox__label">All</span>'+
-        // '</label>'+
-        // '</li>')
         $('#'+fieldName+'All').append(li)
-
-        // $('#'+fieldName+'All').append('<input type="button" class="reset" value="Reset" overlay='+fieldName+' >')
     }
-        else{console.log("la")}
     for(var idx=0;idx<addName.length;idx++){
         addtoList(fieldName,addName[idx],state)
         pushItem(fieldName,addName[idx])
@@ -90,11 +80,7 @@ function pushItem(fieldName,value){
 }
 
 function master(field,value){
-    // console.log("master function")
-    // console.log(value)
-    // console.log(field)
     var state = true
-    // console.log(!state)
     $.ajax({
             type: "POST",
             url: "/ajx-read-checked",
@@ -104,26 +90,20 @@ function master(field,value){
                 isChecked: value,
             }),
             success: function(data){
-                console.log("encore une victoire de canard")
                 if(field=="All"){
-                    // console.log(data)
                     allFields=data["fieldsToGen"]
                     $.each(data["fieldsToGen"],function(index,fieldName){
                             genList(fieldName,data[fieldName])
                     })
                     allFields = allFields
-                    // console.log(allValues)
                 }
                 else{
-                    // console.log(data)
                     $.each(data["fieldsToGen"],function(index,fieldName){
                             applyMask(fieldName,data["enableValue"])
                     })
                  }
             },
             error: function(data){
-                console.log("pouet pouet")
-                console.log(data)
 
             }
     })
@@ -160,9 +140,7 @@ $("document").ready(function(){
         urlParam = window.location.href
         urlMethod = urlParam.split('/')
         urlMethod = urlMethod[urlMethod.length-1]
-        console.log(urlMethod != "log")
     $('.changeGame').on('click', function(){
-        console.log(this.id)
         game_name = this.id
         if(urlMethod != "log"){
             generateDateSelector(game_name)
@@ -174,19 +152,6 @@ $("document").ready(function(){
 });
 $("document").ready(function(){
     master("All","All");
-    // console.log(allFields)
-    // console.log(allValues)
-    //$('ul#masterList').on('change', function(targetName){
-    //     var fieldModified=targetName.target.className
-    //     var valueModified=targetName.target.id
-    //     console.log("attention mesdames et messieurs")
-    //     console.log(targetName.target)
-    //     master(fieldModified,valueModified);
-    // })
-
-
-
-    // })
 });
 // Menu control
 $(".overlay-menu").on('click', function(event) {
