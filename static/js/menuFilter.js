@@ -58,15 +58,12 @@ function genList(fieldName, addName){
 function applyMask(fieldName,valEnable){
     $.each($('.checkItem[overlay="'+fieldName+'"]'), function(){
         var val=$(this).attr("value")
-        console.log(val)
         whatto = val.replace(/\s+/g, '').replace("'", '').replace(",","").replace("(","").replace(")","").replace(/\./g, '')
         var p = valEnable.indexOf(val)
         if(p>-1){
-            // console.log(p)
             $('input#'+whatto+'.checkItem').prop("disabled",false)
         }
         else{
-            // console.log(p)
             $('input#'+whatto+'.checkItem').prop("disabled",true)
             $("input#"+whatto+'.checkItem').prop("checked",false)
         }
@@ -166,7 +163,6 @@ $(".overlay-menu").on('click', function(event) {
     };
 
     var attrSelector = $(".overlay-visible").attr("overlay");
-    console.log(attrSelector);
 
 // Close button control
 $(".overlay-close").on('click', function() {
@@ -183,16 +179,11 @@ $('.reset[overlay="'+ attrSelector +'"]').on('click', function() {
 
 // Checkbox control - inserter in menu to control the attSelector variable
 $('.checkAll[overlay="'+ attrSelector +'"]').on('click', function() {
-    console.log(attrSelector)
     $(':checkbox.checkItem:not(:disabled)[overlay="'+ attrSelector +'"]').prop('checked', this.checked);
 });
 
 $('.checkItem[overlay="'+ attrSelector +'"]').on('click', function() {
-    console.log($("#gameList"))
-    console.log($("input.checkItem:not(:disabled)"))
-    console.log($("input.checkItem[disabled='']"))
     $('.checkAll[overlay="'+ attrSelector +'"]').attr('checked', false);
-    console.log(!$('input.checkItem[overlay="'+ attrSelector +'"]').not(':checked').length > 0);
     if (!$('input.checkItem:not(:disabled)[overlay="'+ attrSelector +'"]').not(':checked').length > 0) {
         $('.checkAll[overlay="'+ attrSelector +'"]').prop('checked', true);
     };
@@ -208,13 +199,8 @@ $('.okButton[overlay="'+ attrSelector +'"]').on('click', function() {
         fieldName = $(this).attr("overlay");
         checkedItems[fieldName].push($(this).val());
     });
-    // checkedItems["install"].push();
-
     checkedItems['playdates'] = [$('#date_start_'+'playdates').attr("value"),$('#date_end_'+'playdates').attr("value")]
     checkedItems['installdates'] = [$('#date_start_'+'installdates').attr("value"),$('#date_end_'+'installdates').attr("value")]
-    // $('#date_start_'+'installdates').attr("value")
-    // $('#date_end_'+'installdates').attr("value")
-    console.log(checkedItems)
     $(".checkItem[disabled='']").each(function(){
 
     })
