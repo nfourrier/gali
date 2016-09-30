@@ -1,23 +1,17 @@
 function addNewSlide(divID,spanID){
     var newSlide = '<section transition="zoom"> <div class="slideGraph" id="'+divID+'">  '
     if(typeof(spanID)!='undefined'){
-        // newSlide = newSlide + '<span class="timeLeft" id="'+spanID+'"></span>'
         newSlide = newSlide + '<span class="timeLeft '+spanID+'"></span>'
     }
     if(divID.indexOf('sun')>-1){
-        //newSlide = newSlide + '<svg><g class="sequence" id="seq_'+divID+'"></g> <g class="explanation" id="exp_'+divID+'" style="visibility: hidden;"> <g class="percentage" id="per_'+divID+'"></g></g></svg>'
         newSlide = newSlide + '<svg><g class="sequence" id="seq_'+divID+'"></g> <g class="explanation" id="exp_'+divID+'" style="visibility: hidden;"> </g></svg></div>'
     }
     else{
         newSlide = newSlide + '</div>'
     }
-    // console.log(divID)
-    // newSlide = newSlide + '</div><pre><code>message</code></pre> </section>'
-    newSlide = newSlide +addDownloadIcon(divID)+'</section>'
-    // console.log(addDownloadIcon(divID))
-    $('.slides').append($(newSlide))
 
-    // console.log(divID,divID.indexOf('akl'))
+    newSlide = newSlide +addDownloadIcon(divID)+'</section>'
+    $('.slides').append($(newSlide))
 }
 
 
