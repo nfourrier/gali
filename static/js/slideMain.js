@@ -17,19 +17,6 @@ function addNewSlide(divID,spanID){
 
 $("document").ready(function(){
     $('#gameTitle').append(game_fullname);
-
-    // $('.gameChange').click(function(){
-    //     game_name = this.id
-    //     game_fullname = this.text
-    //     $('#gameTitle').empty()
-    //     $('#gameTitle').append(game_fullname);
-    //     myMenu._resetMenu()
-    //     clearTimeout(timeoutID_panelMaster)
-    //     clearTimeout(timeoutID_weeklyMaster)
-    //     panelMaster()
-    //     slideWeeklyMaster()
-    // })
-    console.log($(".slides").width())
     if($(".slides").width() > 10){
         console.log(game_name)
         if(displaySequence == 1){
