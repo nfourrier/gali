@@ -18,7 +18,6 @@ function addNewSlide(divID,spanID){
 $("document").ready(function(){
     $('#gameTitle').append(game_fullname);
     if($(".slides").width() > 10){
-        console.log(game_name)
         if(displaySequence == 1){
             queue()
                     .defer(d3.json, "/loadADDjson/"+game_name+"/dau_per_site")
@@ -65,7 +64,21 @@ $("document").ready(function(){
                         "")
                     .await(chartLine)
             addNewSlide('testLili_country_akl')
-
+            queue()
+                    .defer(d3.json, "/loadADDjson/"+game_name+"/test")
+                    .defer(extraGraphParam,
+                        $(".slides").width(),
+                        $(".slides").height(),
+                        stackBarColor,
+                        titleSlideColor,
+                        "Test pour ma Lili",
+                        "testLili_country_akl",
+                        game_name,
+                        "Name",
+                        "Value",
+                        "")
+                    .await(chartLine)
+            addNewSlide('testLili_country_akl')
         }
 
         if(displaySequence == 0){

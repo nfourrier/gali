@@ -5,8 +5,6 @@ from flask import url_for, make_response, send_file
 from celery import Celery
 from celery import current_app
 from celery.task.control import inspect
-
-
 from os import path, environ
 import os
 import json

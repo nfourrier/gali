@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 import datetime as dt
 from os import getenv
+import os
 import sys
 from collections import defaultdict
 from celery.task import task
