@@ -1,11 +1,25 @@
-function chartLine(error,dataJson,extraParam){
+function chartControl(error,dataJson,extraParam){
+    console.log(extraParam)
     var timezoneOffset = new Date(dataJson[0].date*1000)
     var yList = [];
     var yListTmp = [];
     var yValue = [];
     var xList = [];
 
+
+
+
     var StackData = [];
+
+
+    y_mean = extraParam.yKey[0]
+    y_min = extraParam.yKey[1]
+    y_max = extraParam.yKey[2]
+    // y_samples = extraParam.yKey[2:]
+    // console.log(y_samples)
+    y_samples = extraParam.yKey.splice(3)
+
+
 
 
     var isDate = false
@@ -19,17 +33,7 @@ function chartLine(error,dataJson,extraParam){
         })
     }
     var isPercent = 0
-    if(["Retention","ARPU","CSR","ARPU","ARPPU"].indexOf(extraParam.yKey) > -1){
-        sortKey = "AU_"
-        isPercent = 1
-    }
-    else if(extraParam.title.indexOf("retention") > -1){
-        sortKey = "AU_"
-        isPercent = 1
-    }
-    else{
-        sortKey = extraParam.yKey
-    }
+
     dataJson.forEach(function(d) {
         if(isDate){
             if(xList.indexOf(Number(d[extraParam.xKey]*1000))==-1){
@@ -45,27 +49,9 @@ function chartLine(error,dataJson,extraParam){
             }
             d.x = d[extraParam.xKey]
         }
-        if(yListTmp.indexOf(d[extraParam.groupKey])==-1){
-            StackData[d[extraParam.groupKey]] = []
-        }
-        StackData[d[extraParam.groupKey]].push({xName:0,x:d.x2,y:d[extraParam.yKey],y0:0})//.push({"name":d.x,"values":d.AU})
-
-        if(yListTmp.indexOf(d[extraParam.groupKey])==-1){
-            yListTmp.push(d[extraParam.groupKey])
-            yValue[d[extraParam.groupKey]] = d[sortKey]
-        }
-        else{
-            yValue[d[extraParam.groupKey]] += d[sortKey]
-        }
-
     });
+
     dataJson.sort((function(a,b){return a[extraParam.xKey]-b[extraParam.xKey]}))
-
-
-    yListTmp.forEach(function(d){
-        yList.push([d,yValue[d]])
-    })
-
 
     var margin = {top: extraParam.height*0.15, right: extraParam.width*0.01, bottom: extraParam.height*0.1, left: extraParam.width*0.15},
         width = extraParam.width - margin.left - margin.right,
@@ -78,107 +64,24 @@ function chartLine(error,dataJson,extraParam){
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    xList.sort(function(a,b){return a-b;})
-    yList.sort(function(a,b){return b[1]-a[1]})
-    yList = yList.map(function(d){return d[0]})
 
-    if(yList.indexOf("Other-")>-1){
-        yList.splice(yList.indexOf("Other-"),1)
-        yList.push("Other-")
+
+
+
+
+
+
+    xMax = d3.max(dataJson.map(function (d) {return d[extraParam.xKey]; }))
+    xMin = d3.min(dataJson.map(function (d) {return d[extraParam.xKey]; }))
+    yMin=dataJson[0][y_min]
+    yMax=dataJson[0][y_max]
+    for(idx=0;idx<extraParam.yKey.length;idx++){
+        lab = extraParam.yKey[idx]
+        yMin = Math.min(yMin,d3.min(dataJson.map(function (d) {return d[lab]; })))
+        yMax = Math.max(yMax,d3.max(dataJson.map(function (d) {return d[lab]; })))
     }
 
 
-    var maxLengthList = Math.min(5,yList.length-1)
-    var lastXvalues = 14
-    var dataNest = d3.nest()
-        .key(function(d) {return d[extraParam.groupKey];})
-        .sortKeys(function(a,b){
-            return yList.indexOf(a)-yList.indexOf(b)
-        })
-        .entries(dataJson);
-        if(yList.length>=maxLengthList-1){
-            esssai = dataNest.reduce(function(rec,other,idx){
-                var yKey = extraParam.yKey
-                var xKey = extraParam.xKey
-                var gpKey = extraParam.groupKey
-
-                if(idx==maxLengthList){
-                     for(var xdx=0;xdx<xList.length;xdx++){
-                        rec.key = "Other"
-                        if(isDate){
-                            if(rec.values[xdx][xKey].getTime()==(new Date(xList[xdx])).getTime()){
-                                rec.values[xdx][gpKey] = "Other"
-                                if(isPercent == 1){
-                                    rec.values[xdx][yKey] = rec.values[xdx][yKey]
-                                }
-                                rec.values[xdx][xKey] = new Date(xList[xdx]);
-                            }
-                            else{
-                                tmpObj = {}
-                                tmpObj[gpKey] = "Other"
-                                tmpObj[xKey] = new Date(xList[xdx])
-                                tmpObj[yKey] = 0
-                                rec.values.splice(xdx,0,tmpObj)
-                            }
-                        }
-                    }
-                }
-
-                if(idx>maxLengthList){
-                    otherCounter = 0
-                    for(var xdx=0;xdx<xList.length;xdx++){
-                        if(rec.values[xdx][xKey].getTime()==other.values[xdx][xKey].getTime()){
-                            if(isPercent == 1){
-
-                                normRec = rec.values[xdx]["AU_"]
-                                normOth = other.values[xdx]["AU_"]
-                                rec.values[xdx][yKey] = (rec.values[xdx][yKey]*normRec + other.values[xdx][yKey] *normOth) / (normRec+normOth)
-                                rec.values[xdx]["AU_"] =rec.values[xdx]["AU_"]+other.values[xdx]["AU_"]
-                            }
-                            else{
-                                rec.values[xdx][yKey] = rec.values[xdx][yKey] + other.values[xdx][yKey]
-                            }
-                        }
-                        else{
-                            other.values.splice(xdx,0,0)
-                        }
-                    }
-                }
-                return rec
-            },dataNest[maxLengthList])
-        dataNest.splice(maxLengthList,9999)
-        dataNest.push(esssai)
-    }
-
-    legendSpace = width/dataNest.length; // spacing for the legend
-
-    B = extraParam.color.map(function(d,idx){
-        return idx*(maxLengthList)/(extraParam.color.length-1)})
-    var color = d3.scale.linear()
-        .domain(B)
-        .range(extraParam.color);
-
-
-    dataNest.forEach(
-        function(d,i){
-            if(d.values.length > lastXvalues-1){
-                d.values = d.values.splice(Math.max(0,d.values.length-lastXvalues),d.values.length-1)
-            }
-        }
-    )
-    if(isDate){
-        var x = d3.time.scale()
-            .domain([xList[Math.max(xList.length-lastXvalues,0)],xList[xList.length-1]])
-            .range([0, width]);
-    }
-    else{
-        var x = d3.scale.ordinal().rangePoints([0, width]);
-        x.domain(xList.map(function(d) {return d; }));
-    }
-    yMax = d3.max(dataJson, function(d){return +d[extraParam.yKey]})
-    yMin = d3.min(dataJson, function(d){return +d[extraParam.yKey]})
-    yMin = yMin - 0.1*Math.abs(yMin)
-    yMax = yMax + 0.1*Math.abs(yMax)
     if(yMax>1001){
         formatY = d3.format('.2s')
     }
@@ -189,8 +92,20 @@ function chartLine(error,dataJson,extraParam){
         formatY = d3.format('.2r')
     }
 
+    if(isDate){
+        var x = d3.time.scale()
+            .domain([xMin,xMax])
+            .range([0, width]);
+    }
+    else{
+        var x = d3.scale.linear()
+            .domain([xMin,xMax])
+            .range([0,width]);
+            //     var x = d3.scale.ordinal().rangePoints([0, width]);
+            // x.domain([0,459]);
+    }
     var y = d3.scale.linear()
-        .domain([yMin, yMax])
+        .domain([yMin,yMax])
         .range([height, 0]);
     var xAxis = d3.svg.axis().scale(x)
         .orient("bottom")
@@ -224,82 +139,10 @@ function chartLine(error,dataJson,extraParam){
             .style("font", width/30+"px "+fontName)
             .style("font-weight","bolder");
 
- dataNest.forEach(
-        function(d,i){
-            svg.append("path")
-            .attr("class", "line")
-            .style("fill-opacity","0.0")
-            .attr('stroke-width', function(d) { return 0.5*height/(100+0.5*xList.length); })
-            .style("stroke", function() { // Add the colours dynamically
-                return d.color = color(i); })
-            .attr("id", extraParam.htmlID+'_tag'+d.key.replace(/\s+/g, '')) // assign ID
-            .attr("d", priceline(d.values))
-        })
-
-
-    dataNest.forEach(
-        function(d,i){
-            svg.selectAll('circle'+i).data(d.values)
-            .enter().append('svg:circle')
-            .attr("class", function (v,vv) {return extraParam.htmlID+'_cir'+i+"_"+d.key.replace(/\s+/g, '')}) // assign ID
-            .attr('cx', function (v) { return x(v[extraParam.xKey]); })
-            .attr('cy', function (v) { return y(v[extraParam.yKey]); })
-            .style("opacity", 1)
-            .style("stroke", function() { // Add the colours dynamically
-                return d.color = color(i); })
-            .style("stroke-width", 0.55*height/(100+2.5*xList.length))
-            // .style("fill-opacity","0.0")
-            .attr('fill',textSlideColor)
-            .attr('r', 1.5*height/(100+2.5*xList.length))
-            .on("mouseover",mouseover)
-            .on("mouseout",mouseout)
-            // .on("mousemove",mousemove)
-            ;
-
-            svg.append("text")
-            .attr("transform","translate(" + (-0.1*width+i*0.2*width) + "," +-(0.05*height) + ")")
-            // .attr("x", (legendSpace/2)+i*legendSpace)  // space legend
-            // .attr("y", height + (margin.bottom/2)+ 5)
-            .attr("class", "legend")    // style the legend
-            .style("fill", function() { // Add the colours dynamically
-                return d.color = color(i); })
-            .style("fill-opacity","1.0")
-            .on("click", function(){
-                // Determine if current line is visible
-                var active   = d.active ? false : true,
-                newOpacity = active ? 0 : 1;
-                // Hide or show the elements based on the ID
-                d3.selectAll("."+extraParam.htmlID+'_cir'+i+"_"+d.key.replace(/\s+/g, '')) // assign ID
-                    .transition().duration(100)
-                    .style("opacity", newOpacity);
-                // Update whether or not the elements are active
-                d.active = active;
-
-                d3.select("#"+extraParam.htmlID+"_tag"+d.key.replace(/\s+/g, ''))
-                    .transition().duration(100)
-                    .style("opacity", newOpacity);
-                // Update whether or not the elements are active
-                d.active = active;
-                })
-            .text(function(){
-                var keyName = d.key;
-                if(keyName.split(' ').length>1){
-                    return keyName.match(/\b(\w)/g).join('.')+'.';
-                }
-                else{
-                    return keyName
-                }
-            })
-        })
-
-        var li = {
-        w: 0.2*width, h: 0.1*width/1.5, s: 0.01*width, r: 0.01*width
-        };
-
     var focus = svg.append("g")
           .attr("class", "focus")
-          .attr("class", "foc_"+extraParam.htmlID)
-          .style("display", "none");
+          .attr("class", "foc_"+extraParam.htmlID);
+          // .style("display", "none");
     focus.append("svg:rect")
         .attr("rx", li.r)
         .attr("ry", li.r)
@@ -323,6 +166,99 @@ function chartLine(error,dataJson,extraParam){
         .style("font-weight","bolder")
         .attr("fill",colorTheme2)
         .attr("dy", "-1em");
+
+    function generateSVGSegment(x, y, r, startAngle, endAngle) {
+
+         // convert angles to Radians
+         startAngle *= (Math.PI / 180);
+         endAngle *= (Math.PI / 180);
+
+         var largeArc = endAngle - startAngle <= Math.PI ? 0 : 1; // 1 if angle > 180 degrees
+         var sweepFlag = 1; // is arc to be drawn in +ve direction?
+
+         return ['M', x, y, 'L', x + Math.sin(startAngle) * r, y - (Math.cos(startAngle) * r),
+                 'A', r, r, 0, largeArc, sweepFlag, x + Math.sin(endAngle) * r, y - (Math.cos(endAngle) * r), 'Z'
+                ].join(' ');
+    }
+
+    focus
+
+    // Display mean
+    idx_color = 0
+    focus.append('path')
+        .attr('class','line')
+        .attr('id','lin_'+extraParam.htmlID+'_'+y_mean)
+        .style({
+            "fill": "none",
+            "stroke": extraParam.color[0],
+            "stroke-width": "2"
+        })
+        .datum(dataJson)
+        .attr("d",d3.svg.line()
+            .interpolate("basis")
+            .x(function(d){ return x(d.x);})
+            .y(function(d){ return y(d[y_mean]);})
+        )
+    // legend
+    svg.append("text")
+        .attr("transform","translate(" + (-0.1*width+0*0.2*width) + "," +-(0.05*height) + ")")
+        .attr("class", "legend")    // style the legend
+        .style("fill", extraParam.color[0])
+        .style("fill-opacity","1.0")
+        .text(y_mean)
+
+    // Display patient
+
+    for(idx=0;idx<y_samples.length;idx++){
+        idx_color = 1+idx
+        focus.append('path')
+            .attr('class','line')
+            .attr('id','lin_'+extraParam.htmlID+'_'+y_samples[idx])
+            .style({
+                "fill": "none",
+                "stroke": extraParam.color[idx_color],
+                "stroke-width": "2"
+            })
+            .datum(dataJson)
+            .attr("d",d3.svg.line()
+                .interpolate("basis")
+                .x(function(d){ return x(d.x);})
+                .y(function(d){ return y(d[y_samples[idx]]+10);})
+            )
+                // legend
+        svg.append("text")
+            .attr("transform","translate(" + (-0.1*width+(2+idx)*0.2*width) + "," +-(0.05*height) + ")")
+            .attr("class", "legend")    // style the legend
+            .style("fill", extraParam.color[idx_color])
+            .style("fill-opacity","1.0")
+            .text(y_samples[idx])
+        }
+
+
+
+    idx_color = 0
+    opa = 0.4
+    focus.append("path")
+        .datum(dataJson)
+        .attr({
+            // "class": "area confidence",
+            'id':'are_'+extraParam.htmlID+'_'+y_samples[idx],
+            "fill": extraParam.color[idx_color],
+            "d": d3.svg.area()
+                .interpolate("basis")
+                .x(function (d) { return x(d.x); })
+                .y0(function (d) { return y(d[y_min]); })
+                .y1(function (d) { return y(d[y_max]); })
+        })
+        .style("opacity",opa);
+    svg.append("text")
+            .attr("transform","translate(" + (-0.1*width+(1)*0.2*width) + "," +-(0.05*height) + ")")
+            .attr("class", "legend")    // style the legend
+            .style("fill", extraParam.color[idx_color])
+            .style("fill-opacity",opa)
+            .text('conf. int.')
+
+
 
     function mouseover(d) {
         focus.style("display",null)
