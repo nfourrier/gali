@@ -19,51 +19,81 @@ $("document").ready(function(){
     $('#gameTitle').append(game_fullname);
     if($(".slides").width() > 10){
         if(displaySequence == 1){
+            // queue()
+            //         .defer(d3.json, "/loadADDjson/"+game_name+"/dau_per_site")
+            //         .defer(extraGraphParam,
+            //             $(".slides").width(),
+            //             $(".slides").height(),
+            //             stackBarColor,
+            //             titleSlideColor,
+            //             "DAU per site",
+            //             "dau_site_akl",
+            //             game_name,
+            //             "DATES",
+            //             "DAU",
+            //             "SITE")
+            //         .await(stackBar)
+            // addNewSlide('dau_site_akl')
+            // queue()
+            //         .defer(d3.json, "/loadADDjson/"+game_name+"/countryMPAU")
+            //         .defer(extraGraphParam,
+            //             $(".slides").width(),
+            //             $(".slides").height(),
+            //             stackBarColor,
+            //             titleSlideColor,
+            //             "Monthly Revenue per country",
+            //             "monthlyRevenue_country_akl",
+            //             game_name,
+            //             "date",
+            //             "revenue",
+            //             "country")
+            //         .await(stackBar)
+            // addNewSlide('monthlyRevenue_country_akl')
+            // queue()
+            //         .defer(d3.json, "/loadADDjson/"+game_name+"/test")
+            //         .defer(extraGraphParam,
+            //             $(".slides").width(),
+            //             $(".slides").height(),
+            //             stackBarColor,
+            //             titleSlideColor,
+            //             "Test pour ma Lili",
+            //             "testLili_country_akl",
+            //             game_name,
+            //             "Name",
+            //             "Value",
+            //             "")
+            //         .await(chartLine)
+            // addNewSlide('testLili_country_akl')
             queue()
-                    .defer(d3.json, "/loadADDjson/"+game_name+"/dau_per_site")
+                    .defer(d3.json, "/loadADDjson/"+game_name+"/histo")
                     .defer(extraGraphParam,
                         $(".slides").width(),
                         $(".slides").height(),
                         stackBarColor,
                         titleSlideColor,
-                        "DAU per site",
-                        "dau_site_akl",
+                        "Patient vs. Control",
+                        "histoControl_akl",
                         game_name,
-                        "DATES",
-                        "DAU",
-                        "SITE")
-                    .await(stackBar)
-            addNewSlide('dau_site_akl')
+                        "ind",
+                        ['control_mean','control_min','control_max',"patient"],
+                        "label")
+                    .await(histoControl)
+            addNewSlide('histoControl_akl')
             queue()
-                    .defer(d3.json, "/loadADDjson/"+game_name+"/countryMPAU")
+                    .defer(d3.json, "/loadADDjson/"+game_name+"/knee")
                     .defer(extraGraphParam,
                         $(".slides").width(),
                         $(".slides").height(),
                         stackBarColor,
                         titleSlideColor,
-                        "Monthly Revenue per country",
-                        "monthlyRevenue_country_akl",
+                        "Patient vs. Control",
+                        "testControl_akl",
                         game_name,
-                        "date",
-                        "revenue",
-                        "country")
-                    .await(stackBar)
-            addNewSlide('monthlyRevenue_country_akl')
-            queue()
-                    .defer(d3.json, "/loadADDjson/"+game_name+"/test")
-                    .defer(extraGraphParam,
-                        $(".slides").width(),
-                        $(".slides").height(),
-                        stackBarColor,
-                        titleSlideColor,
-                        "Test pour ma Lili",
-                        "testLili_country_akl",
-                        game_name,
-                        "Name",
-                        "Value",
+                        "ind",
+                        ['control_mean','control_min','control_max',"patientA",'patientB'],
                         "")
-                    .await(chartLine)
-            addNewSlide('testLili_country_akl')
+                    .await(chartControl)
+            addNewSlide('testControl_akl')
             queue()
                     .defer(d3.json, "/loadADDjson/"+game_name+"/test")
                     .defer(extraGraphParam,
