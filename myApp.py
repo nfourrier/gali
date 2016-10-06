@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 import sys
 from flask import Flask, Blueprint, abort, jsonify, request, session, render_template
-from flask import url_for, make_response, send_file
+from flask import url_for, make_response, send_file, redirect
 from celery import Celery
 from celery import current_app
 from celery.task.control import inspect
@@ -144,6 +144,25 @@ def testVarAppRoute(game, year, month, day):
     dataDate = year+"-"+month+"-"+day
     return loadJSONdata(filename=dataDate, folder=game)
 
+@app.route('/upload', methods=['POST'])
+def upload():
+    print('in upload')
+    # Get the name of the uploaded file
+    file = request.files['file']
+    # Check if the file is one of the allowed types/extensions
+    if file and file.filename.rsplit('.', 1)[-1] in ['csv','xlsx']:
+        # Make the filename safe, remove unsupported chars
+        print(file.filename)
+        from werkzeug import secure_filename
+        filename = secure_filename(file.filename)
+        # filename = file.filename
+        # Move the file form the temporal folder to
+        # the upload folder we setup
+        file.save(os.path.join('data','upload', filename))
+        print(filename)
+        # Redirect the user to the uploaded_file route, which
+        # will basicaly show on the browser the uploaded file
+        return 'file {} uploaded'.format(filename)
 
 if __name__ == "__main__":
     port = int(environ.get("PORT", 5000))
