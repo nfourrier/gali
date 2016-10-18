@@ -15,8 +15,6 @@ function chartControl(error,dataJson,extraParam){
     y_mean = extraParam.yKey[0]
     y_min = extraParam.yKey[1]
     y_max = extraParam.yKey[2]
-    // y_samples = extraParam.yKey[2:]
-    // console.log(y_samples)
     y_samples = extraParam.yKey.splice(3)
 
 
@@ -65,12 +63,6 @@ function chartControl(error,dataJson,extraParam){
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-
-
-
-
-
-
     xMax = d3.max(dataJson.map(function (d) {return d[extraParam.xKey]; }))
     xMin = d3.min(dataJson.map(function (d) {return d[extraParam.xKey]; }))
     yMin=dataJson[0][y_min]
@@ -101,16 +93,12 @@ function chartControl(error,dataJson,extraParam){
         var x = d3.scale.linear()
             .domain([xMin,xMax])
             .range([0,width]);
-            //     var x = d3.scale.ordinal().rangePoints([0, width]);
-            // x.domain([0,459]);
     }
     var y = d3.scale.linear()
         .domain([yMin,yMax])
         .range([height, 0]);
     var xAxis = d3.svg.axis().scale(x)
         .orient("bottom")
-        // .ticks(5);
-
 
     var yAxis = d3.svg.axis().scale(y)
         .orient("left").ticks(5)
@@ -118,8 +106,6 @@ function chartControl(error,dataJson,extraParam){
     var priceline = d3.svg.line()
         .x(function(d) {return x(d[extraParam.xKey]); })
         .y(function(d) {return y(d[extraParam.yKey]); });
-
-
 
     svg.append("g")
         .attr("class", "x axis")
@@ -167,22 +153,6 @@ function chartControl(error,dataJson,extraParam){
         .attr("fill",colorTheme2)
         .attr("dy", "-1em");
 
-    function generateSVGSegment(x, y, r, startAngle, endAngle) {
-
-         // convert angles to Radians
-         startAngle *= (Math.PI / 180);
-         endAngle *= (Math.PI / 180);
-
-         var largeArc = endAngle - startAngle <= Math.PI ? 0 : 1; // 1 if angle > 180 degrees
-         var sweepFlag = 1; // is arc to be drawn in +ve direction?
-
-         return ['M', x, y, 'L', x + Math.sin(startAngle) * r, y - (Math.cos(startAngle) * r),
-                 'A', r, r, 0, largeArc, sweepFlag, x + Math.sin(endAngle) * r, y - (Math.cos(endAngle) * r), 'Z'
-                ].join(' ');
-    }
-
-    focus
-
     // Display mean
     idx_color = 0
     focus.append('path')
@@ -208,7 +178,6 @@ function chartControl(error,dataJson,extraParam){
         .text(y_mean)
 
     // Display patient
-
     for(idx=0;idx<y_samples.length;idx++){
         idx_color = 1+idx
         focus.append('path')
