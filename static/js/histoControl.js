@@ -1,16 +1,10 @@
 function histoControl(error,dataJson,extraParam){
-    console.log(extraParam)
 
     var timezoneOffset = new Date(dataJson[0].date*1000)
     var yList = [];
     var yListTmp = [];
     var yValue = [];
     var xList = [];
-
-
-
-
-
 
 
     y_mean = extraParam.yKey[0]
@@ -25,12 +19,6 @@ function histoControl(error,dataJson,extraParam){
     color[y_max] = extraParam.color[3]
 
     var label = [];
-    // y_samples = extraParam.yKey[2:]
-    // console.log(y_samples)
-    // y_samples = extraParam.yKey.splice(3)
-
-
-
 
     var isDate = false
     if(['date','Date',"DATE"].indexOf(extraParam.xKey)>-1){
@@ -56,7 +44,6 @@ function histoControl(error,dataJson,extraParam){
         else{
             if(xList.indexOf(d[extraParam.xKey])==-1){
                 xList.push(d[extraParam.xKey])
-                // console.log(extraParam.gpKey,d[extraParam.xKey],d[extraParam.gpKey])
                 label[d[extraParam.xKey]] = d[extraParam.groupKey]
             }
             d.x = d[extraParam.xKey]
@@ -88,13 +75,6 @@ function histoControl(error,dataJson,extraParam){
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-
-
-
-
-
-
-
     xMax = d3.max(dataJson.map(function (d) {return d[extraParam.xKey]; }))
     xMin = d3.min(dataJson.map(function (d) {return d[extraParam.xKey]; }))
     yMin=dataJson[0][y_min]
@@ -104,8 +84,6 @@ function histoControl(error,dataJson,extraParam){
         yMin = Math.min(yMin,d3.min(dataJson.map(function (d) {return d[lab]; })))
         yMax = Math.max(yMax,d3.max(dataJson.map(function (d) {return d[lab]; })))
     }
-
-console.log(xMin,xMax)
 
     if(yMax>1001){
         formatY = d3.format('.2s')
@@ -126,15 +104,12 @@ console.log(xMin,xMax)
         var x = d3.scale.ordinal()
             .domain(xList)
             .rangeRoundBands([0, width], .08);
-            //     var x = d3.scale.ordinal().rangePoints([0, width]);
-            // x.domain([0,459]);
     }
     var y = d3.scale.linear()
         .domain([yMin,yMax])
         .range([height, 0]);
     var xAxis = d3.svg.axis().scale(x)
         .orient("bottom")
-        // .ticks(5);
 
     var yAxis = d3.svg.axis().scale(y)
         .orient("left").ticks(5)
@@ -168,8 +143,6 @@ console.log(xMin,xMax)
     var focus = svg.append("g")
           .attr("class", "focus")
           .attr("class", "foc_"+extraParam.htmlID);
-          // .style("display", "none");
-
 
     focus.append("svg:rect")
         .attr('class','lalalallalalla')
@@ -195,12 +168,6 @@ console.log(xMin,xMax)
         .style("font-weight","bolder")
         .attr("fill",colorTheme2)
         .attr("dy", "-1em");
-
-    // function errorbar(svg,ymin,ymax,x,width){
-    //     svg = svg.append('g')
-    //     svg.append('path')
-
-    // }
 
     // Display mean
     idx_color = 0
@@ -258,26 +225,6 @@ console.log(xMin,xMax)
                 .attr("transform", function(d){return "translate("+(x(d.x)+x.rangeBand()/2)+"," + y(d[y_max]) + ")"})
                 .attr("d",d=function(d){return eb(-widthEB/2,widthEB,0,y(d[y_min])-y(d[y_max]),3)})
 
-        // .append('rect')
-        //     .attr('class','rect')
-        //     .attr('id', function(d) {return 'rect_'+extraParam.htmlID+'_'+y_sample+d[extraParam.xKey]})
-        //     .attr("x",  function(d) {return x(d.x); })
-        //     .attr("y",  function(d) {return y(d[y_sample]); })
-        //     .attr("width", x.rangeBand())
-        //     .attr("height", function(d) {return y(yMin)-y(d[y_sample])})
-        //     .style("fill-opacity","0.5")
-        // .style({
-        //     "fill": "none",
-        //     "stroke": extraParam.color[0],
-        //     "stroke-width": "2"
-        // })
-        // .datum(dataJson)
-        // .attr("d",d3.svg.line()
-        //     .interpolate("basis")
-        //     .x(function(d){ return x(d.x);})
-        //     .y(function(d){ return y(d[y_mean]);})
-        // )
-    // legend
     svg.append("text")
         .attr("transform","translate(" + (-0.1*width+0*0.2*width) + "," +-(0.05*height) + ")")
         .attr("class", "legend")    // style the legend
@@ -314,7 +261,7 @@ console.log(xMin,xMax)
       }
     makeSlideTitle(svg,width/2,-height/10,width,height,margin,extraParam)
     dataJson.length = 0
-    // StackData.length = 0
+    StackData.length = 0
     timezoneOffset.length = 0
     yList.length = 0
     yListTmp.length = 0
