@@ -1,4 +1,24 @@
 function histoControl(error,dataJson,extraParam){
+    //////////////////////////////////////////////////////////
+    // HELP
+    // IN slideMain.js, to add a slide using the histoControl function:
+    //      queue()
+    //         .defer(d3.json, "/loadADDjson/"+game_name+"/histo")  <=File containing data
+    //         .defer(extraGraphParam, <= Variable containing general info about slides, display
+    //             $(".slides").width(), <= Size
+    //             $(".slides").height(), <=Size
+    //             stackBarColor, <=List of colors
+    //             titleSlideColor,
+    //             "Patient vs. Control",
+    //             "histoControl_akl",
+    //             game_name,
+    //             "ind",  <=x axis
+    //             ['control_mean','control_min','control_max',"patient"], <=y-axis (variable named contained in the data file)
+    //                      !!! keep this order for the variables: mean, min, max, test
+    //             "label") <=group axis
+    //         .await(histoControl)
+    // addNewSlide('histoControl_akl')
+
 
     var timezoneOffset = new Date(dataJson[0].date*1000)
     var yList = [];
