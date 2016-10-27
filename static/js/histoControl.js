@@ -81,7 +81,6 @@ function histoControl(error,dataJson,extraParam){
     });
     xList.sort()
     dataJson.sort((function(a,b){return a[extraParam.xKey]-b[extraParam.xKey]}))
-    console.log(xList)
 
 
     var margin = {top: extraParam.height*0.15, right: extraParam.width*0.01, bottom: extraParam.height*0.1, left: extraParam.width*0.15},
@@ -199,7 +198,7 @@ function histoControl(error,dataJson,extraParam){
             .attr("x",  function(d) {return x(d.x); })
             .attr("y",  function(d) {return y(d[d.y1]); })
             .attr("width", x.rangeBand())
-            .attr("height", function(d) {console.log(d);return y(yMin)-y(d[d.y1])})
+            .attr("height", function(d) {return y(yMin)-y(d[d.y1])})
             .style("fill", function(d) {return color[d.y1]})
             .style("fill-opacity","1.")
     focus.selectAll(".rectSecond")
@@ -281,11 +280,15 @@ function histoControl(error,dataJson,extraParam){
       }
     makeSlideTitle(svg,width/2,-height/10,width,height,margin,extraParam)
     dataJson.length = 0
-    StackData.length = 0
     timezoneOffset.length = 0
     yList.length = 0
     yListTmp.length = 0
     yValue.length = 0
     xList.length = 0
     color.length = 0
+    yList.length = 0
+    yListTmp.length = 0
+    yValue.length = 0
+    xList.length = 0
+
 }
