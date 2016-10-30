@@ -1,0 +1,383 @@
+.slideGraph {
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+.slideGraph h1{
+  font-size:10vh;
+  vertical-align: top;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+}
+
+.slideGraph text{
+  font-family:'nicoFont';
+  font-weight:bolder;
+  font-size:2vh;
+  /*color: gray;*/
+  fill-opacity: .9;
+  /*fill:rgb(83, 80, 80);*/
+}
+
+.container {
+  position: relative;
+  overflow: hidden;
+  /*background: #34495e;*/
+}
+
+.slideContainer {
+  position: absolute;
+  /*width:80%;*/
+  /*left:30%;*/
+  right:0%;
+  top:10vh;
+  bottom:0vh;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+
+
+#headerLogo {
+  /*color: #535353;*/
+  outline: none;
+  /*fill: #535353;*/
+  font-size:3vh;
+  font-family:'nicoFont';
+  font-weight: bolder;
+}
+
+#headerLogo a{
+  /*color: #535353;*/
+  outline: none;
+  /*fill: #535353;*/
+  font-size:4vh;
+  /*background: #f7f7f7;*/
+}
+
+#headerLogo a svg {
+  margin-left: 2%;
+}
+
+#headerLogo a:hover, a:focus, a:active {
+  outline: none;
+  /*background: #535353;*/
+  /*color: #f7f7f7;*/
+  /*fill: #f7f7f7;*/
+}
+
+#mp-menu {
+  color: #f7f7f7;
+  outline: none;
+  fill: #f7f7f7;
+  /*font-size:3vh;*/
+  font-family:'nicoFont';
+  /*font-weight: bolder;*/
+}
+
+#mp-menu a{
+  color: #535353;
+  outline: none;
+  fill: #535353;
+  /*font-size:4vh;*/
+}
+
+#mp-menu a svg {
+  margin-left: 2%;
+}
+
+#mp-menu a:hover, a:focus {
+  outline: none;
+  background: #535353;
+  color: #f7f7f7;
+  fill: #f7f7f7;
+}
+
+
+.panelContainer {
+  position: absolute;
+  /*width:30%;*/
+/*  height:70%;*/
+  left:0px;
+  top:10vh;
+  bottom:0vh;
+  font-family:'nicoFont';
+}
+
+.panelContainer h1{
+  text-align: center;
+  font-weight:500;
+  font-size:20px;
+  color: #0c5b78;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.panelContainer .circleIndicator{
+  float:center;
+}
+
+
+.panelContainer .circleMain{
+  display:block;
+  text-align: center;
+}
+
+.panelContainer .circleSub {
+  /*display:table-cell;*/
+  /*width:100%;
+  text-align: center;
+  margin-top: 10%;
+  margin-bottom: 10%;*/
+  float:left;
+}
+
+.axis path {
+  fill:none;
+  stroke:#535353;
+  stroke-width:2.0;
+  /*fill:#535353;*/
+  shape-rendering: crispEdges;
+}
+
+/*----- ROI -----*/
+.hero-kpi .roi-data {
+  margin: 30px auto 0;
+  font-weight: 300; }
+  .hero-kpi .roi-data.main .data-title {
+    display: block;
+    margin-left: -60%;
+    margin-bottom: 30px; }
+  .hero-kpi .roi-data.main .data {
+    /*main number in nice box*/
+    font-size: 60px; }
+    .hero-kpi .roi-data.main .data span.decimal {
+      font-size: 20px; }
+  .hero-kpi .roi-data.sub .data-title {
+    display: block;
+    margin-left: -20%;
+    margin-bottom: 50px; }
+    .hero-kpi .roi-data.sub .data-title a {
+      font-weight: 300;
+      color: #eceff1;
+      margin-right: 2rem;
+      padding: 0 .2rem; }
+      .hero-kpi .roi-data.sub .data-title a:hover, .hero-kpi .roi-data.sub .data-title a.active {
+        border-bottom: 1px solid #f6d282;
+        padding-bottom: 1rem; }
+  .hero-kpi .roi-data.sub .data {
+    font-size: 40px; }
+    .hero-kpi .roi-data.sub .data span.decimal {
+      font-size: 20px; }
+    .hero-kpi .roi-data.sub .data.plus {
+      color: #0c5b78; }
+    .hero-kpi .roi-data.sub .data.minus {
+      color: #f44336; }
+.hero-kpi .box-mini p {
+  /*color: #eee;*/
+  /*font-size: 14px;*/
+  /*text-align: center;*/
+  /*font-weight: 300;*/
+  margin: 22px auto 0; }
+  .hero-kpi .box-mini p span {
+    font-size: 24px; }
+
+.policeMain{
+  color: #0c5b78;
+  font-size: 18px;
+  font-weight: 600;
+}
+.policeSub{
+  color: #e37500;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.hero-kpi {
+  /*padding-right: 0.5rem;
+  padding-left: 0.5rem; */}
+  .hero-kpi .graphMain {
+    border-top: none;
+    border-bottom: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    background-image: url(.../img/bg-hero-kpi.png);
+    background: #05264d;
+    background: url(.../img/bg-hero-kpi.png) repeat, -moz-linear-gradient(-45deg, #05264d 0%, #90cbf0 71%, #0c5b78 100%);
+    background: url(.../img/bg-hero-kpi.png) repeat, -webkit-gradient(left top, right bottom, color-stop(0%, #05264d), color-stop(71%, #90cbf0), color-stop(100%, #0c5b78));
+    background: url(.../img/bg-hero-kpi.png) repeat, -webkit-linear-gradient(-45deg, #05264d 0%, #90cbf0 71%, #0c5b78 100%);
+    background: url(.../img/bg-hero-kpi.png) repeat, -o-linear-gradient(-45deg, #05264d 0%, #90cbf0 71%, #0c5b78 100%);
+    background: url(.../img/bg-hero-kpi.png) repeat, -ms-linear-gradient(-45deg, #05264d 0%, #90cbf0 71%, #0c5b78 100%);
+    background: url(.../img/bg-hero-kpi.png) repeat, linear-gradient(135deg, #05264d 0%, #90cbf0 71%, #0c5b78 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#05264d', endColorstr='#0c5b78', GradientType=1 );
+
+    /* Permalink - http://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28\-45deg\%2C\%20rgba\%285\%2C38\%2C77\%2C1\%29\%200\%25\%2C\%20rgba\%28144\%2C203\%2C240\%2C1\%29\%2071\%25\%2C\%20rgba\%2812\%2C91\%2C120\%2C1\%29\%20100\%25\%29\%3B'*/
+}
+
+
+
+#test .arc2 {
+    stroke-weight:0.1;
+    fill: #3660b0;
+}
+
+#outer {
+    background:#FFFFFF;
+    border-radius: 5px;
+    color: #000;
+}
+
+#radial1, #radial2, #radial3, #radial4 {
+    width: 33%;
+    height: 200px;
+    box-sizing: border-box;
+    float: left;
+}
+
+#radial2 .arc {
+    stroke-weight: 0.1;
+    fill: #f0a417;
+}
+
+#radial2 .arc2 {
+    stroke-weight: 0.1;
+    fill: #b00d08;
+}
+
+#radial3 .arc {
+    stroke-weight: 0.1;
+    fill: #1d871b;
+}
+
+
+.selectedRadial {
+    border-radius: 3px;
+    background: #f4f4f4;
+    color: #000;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+    border: 1px solid rgba(200,200,200,0.85);
+}
+
+.radial {
+    border-radius: 3px;
+    background: #FFFFFF;
+    color: #000;
+
+}
+
+
+.timeLeft{
+  position: absolute;
+  bottom: 10%;
+  right: 0;
+}
+
+.panelTitle{
+    letter-spacing: 0.1em;
+    color: rgb(210,233,255);
+    /*font-size: 100%;*/
+    /*text-size:"Largest";*/
+    font-weight: 300;
+    text-align: center;
+    text-shadow: 1px 1px rgba(150, 150, 150, 1);
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+/*.download-btn {
+  float: left;
+  position:absolute;
+  bottom:0;
+}
+
+
+.btn2 a {
+  fill: #535353;
+}
+
+.btn2 a:hover, a:focus {
+  fill: #f7f7f7;
+  background: #535353;
+  color: #f7f7f7;
+}*/
+/*.btn{
+  background
+}*/
+
+/*#gameTitle{
+position: absolute;
+  right: 10%;
+  float:right;
+      line-height: 0.1;
+}*/
+
+
+
+/*body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: #fff;
+  width: 680px;
+  height: 800px;
+  margin-top: 10px;
+}*/
+
+/*#main {
+  float: left;
+  /*width: 550px;*/
+
+
+/*#sidebar {
+  float: right;
+  width: 10vh;
+}*/
+
+/*#sequence {
+  width: 600px;
+  height: 70px;
+}*/
+
+/*#legend {
+  padding: 10px 0 0 3px;
+}*/
+
+/*#sequence text, #legend text {
+  font-weight: 600;
+  fill: #fff;
+}
+*/
+/*#chart {
+  position: relative;
+}
+
+#chart path {
+  stroke: #fff;
+}*/
+
+/*#explanation {
+  position:absolute;
+  height:1px;
+}*/
+  /*position: absolute;*/
+  /*top: 235px;
+  left: 205px;*/
+  /*width: 140px;*/
+  /*text-align: center;
+  color: #666;
+  z-index: -1;
+}
+*/
+/*#percentage {
+  font-size: 2.5em;
+}*/
+/*.explanation{
+  width:100px;
+  height:100px;
+}*/
