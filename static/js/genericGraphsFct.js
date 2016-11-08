@@ -19,7 +19,9 @@ if(last_param=="iaa"){
     colorTheme1 = "#535353" //text
     colorTheme2 = "#f7f7f7" //top
     colorTheme3 = "#ecf2f6" //left
+    // colorTheme3 = 'linear-gradient(0deg, #CCCCCC, #F0F0F0)'
     colorTheme4 = "#ffffff" //slide
+    // colorTheme4 = 'linear-gradient(0deg, #CCCCCC, #F0F0F0)'
     stackBarColor = ["#8297a8","#9fc2c4","#facdae","#fc9d9b","#f3565d"]
     circleColor = ['#b2a6e5','#15a4fa','#cfdbe2']
     colorTriangleUp = "#18bd35"
