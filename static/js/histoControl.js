@@ -91,7 +91,9 @@ function histoControl(error,dataJson,extraParam){
     var svg = d3.select("#"+extraParam.htmlID).append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
+        // .append('symbol')
         .append("g")
+        .attr('id','moii'+extraParam.htmlID)
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     xMax = d3.max(dataJson.map(function (d) {return d[extraParam.xKey]; }))
@@ -249,6 +251,8 @@ function histoControl(error,dataJson,extraParam){
         .attr("class", "legend")    // style the legend
         .style("fill", color[y_mean])
         .style("fill-opacity","1.0")
+        .style("font", height/25+"px "+fontName)
+        .style("font-weight","bolder")
         .text(y_mean)
 
     svg.append("text")
@@ -256,6 +260,8 @@ function histoControl(error,dataJson,extraParam){
         .attr("class", "legend")    // style the legend
         .style("fill", color[y_sample])
         .style("fill-opacity","1.0")
+        .style("font", height/25+"px "+fontName)
+        .style("font-weight","bolder")
         .text(y_sample)
 
 
