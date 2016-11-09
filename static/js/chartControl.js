@@ -175,6 +175,8 @@ function chartControl(error,dataJson,extraParam){
         .attr("class", "legend")    // style the legend
         .style("fill", extraParam.color[0])
         .style("fill-opacity","1.0")
+        .style("font", height/25+"px "+fontName)
+        .style("font-weight","bolder")
         .text(y_mean)
 
     // Display patient
@@ -200,6 +202,8 @@ function chartControl(error,dataJson,extraParam){
             .attr("class", "legend")    // style the legend
             .style("fill", extraParam.color[idx_color])
             .style("fill-opacity","1.0")
+            .style("font", height/25+"px "+fontName)
+            .style("font-weight","bolder")
             .text(y_samples[idx])
         }
 
@@ -225,6 +229,8 @@ function chartControl(error,dataJson,extraParam){
             .attr("class", "legend")    // style the legend
             .style("fill", extraParam.color[idx_color])
             .style("fill-opacity",opa)
+            .style("font", height/25+"px "+fontName)
+            .style("font-weight","bolder")
             .text('conf. int.')
 
 
