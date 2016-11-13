@@ -20,14 +20,15 @@ function makeD3Retentiongraphs(error, data, extraParam) {
 
     //height of each row in the heatmap
     //width of each column in the heatmap
-    var minDateTS = data[0]["Install Date"];
-    var maxDateTS = data[0]["Install Date"];
+    console.log(extraParam)
+    var minDateTS = data[0][extraParam.yKey];
+    var maxDateTS = data[0][extraParam.yKey];
 
 
 
     data.forEach(function(d) {
       // console.log(data)
-        d["TS"] = d["Install Date"]
+        d["TS"] = d[extraParam.yKey]
         if(d["TS"]>maxDateTS){
             maxDateTS = d["TS"];
         }
@@ -35,22 +36,22 @@ function makeD3Retentiongraphs(error, data, extraParam) {
             minDateTS = d["TS"];
         }
 
-        d["Install Date"] = new Date(d["TS"]*1000-12*3600*1000+24*3600*1000);
+        d[extraParam.yKey] = new Date(d["TS"]*1000-12*3600*1000+24*3600*1000);
     });
 
     var minDate = new Date(minDateTS*1000-12*3600*1000+24*3600*1000);
     var maxDate = new Date(maxDateTS*1000-12*3600*1000+24*3600*1000);
     var dimIns = countUnique(data,"TS")
-    var dimRet = countUnique(data,"Retention")
+    var dimRet = countUnique(data,extraParam.xKey)
 
     var colorLow = 'green', colorMed = 'yellow', colorHigh = 'red';
 
-    h_title = $("h1#titleHeat").height()
+    // h_title = $("h1#titleHeat").height()
     w_slide = extraParam.width
     h_slide = extraParam.height
     var margin = {top: extraParam.height*0.15, right: extraParam.width*0.01, bottom: extraParam.height*0.1, left: extraParam.width*0.15},
         width = w_slide*1 - margin.left - margin.right,
-        height = h_slide*0.9 - margin.top - margin.bottom - h_title;
+        height = h_slide*0.9 - margin.top - margin.bottom;
 
     var gridSize = 10,
         h = height/dimIns,
@@ -62,7 +63,7 @@ function makeD3Retentiongraphs(error, data, extraParam) {
         .range([0, width]);
 
     var y = d3.time.scale()
-        .domain(d3.extent(data,function(d){return d["Install Date"];}))
+        .domain(d3.extent(data,function(d){return d[extraParam.yKey];}))
         // .attr("class", ".tick_label")
         .range([height, 0]);
 
@@ -93,13 +94,13 @@ function makeD3Retentiongraphs(error, data, extraParam) {
         .domain([0,10,20,40,100])
         .range(A);
 
-
+          console.log(dimRet,w)
     // var colorScale = d3.scale.linear()
     //     .domain([0,5,10,15,20,25,30,40,100])
     //     .range(["#07203D","#213B59","#4F6A89","#7C98B8","#A9C7E8","#7C98B8","#4F6A89","#213B59","#07203D"]);
          // .domain([0, 30, 100])
          // .range(["#07203D", "#213B59", colorHigh]);
-    var svg = d3.select("#heatmap").append("svg")
+    var svg = d3.select("#"+extraParam.htmlID).append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
@@ -117,13 +118,13 @@ function makeD3Retentiongraphs(error, data, extraParam) {
       .attr('fill', textSlideColor);;
 
     var heatMap = svg.selectAll(".heatmap")
-        .data(data, function(d) { return d["Install Date"] + ':' + d["Retention"]; })
+        .data(data, function(d) { return d[extraParam.yKey] + ':' + d[extraParam.xKey]; })
       .enter().append("g:rect")
-        .attr("x", function(d) { return d["Retention"] * w; })
+        .attr("x", function(d) {return d[extraParam.xKey] * w; })
         .attr("y", function(d) {return ((maxDateTS-minDateTS)/86400 -(d["TS"] - minDateTS)/86400) * h; })
         .attr("width", function(d) { return w; })
         .attr("height", function(d) { return h; })
-        .style("fill", function(d) { return colorScale(d.Value); });
+        .style("fill", function(d) {return colorScale(d[extraParam.groupKey]); });
 
 
       // Add a legend for the color values.
