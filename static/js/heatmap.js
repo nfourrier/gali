@@ -11,23 +11,12 @@ function countUnique(dataIN, fieldIN){
 }
 
 function makeD3Retentiongraphs(error, data, extraParam) {
-    // var data = [
-    //     {score: 0.5, row: 0, col: 0},
-    //     {score: 0.7, row: 0, col: 1},
-    //     {score: 0.2, row: 1, col: 0},
-    //     {score: 0.4, row: 1, col: 1}
-    // ];
-
-    //height of each row in the heatmap
-    //width of each column in the heatmap
-    console.log(extraParam)
     var minDateTS = data[0][extraParam.yKey];
     var maxDateTS = data[0][extraParam.yKey];
 
 
 
     data.forEach(function(d) {
-      // console.log(data)
         d["TS"] = d[extraParam.yKey]
         if(d["TS"]>maxDateTS){
             maxDateTS = d["TS"];
@@ -84,22 +73,13 @@ function makeD3Retentiongraphs(error, data, extraParam) {
 
     B = extraParam.color.concat(["#07203D","#213B59","#4F6A89","#7C98B8","#A9C7E8"])
     B = extraParam.color
-    // console.log(extraParam.color)
-    // console.log(B)
+
     A = B.slice(0,4).concat(B[4],B.slice(0,4).reverse()),B.slice(0,4).reverse()
     A = B
-    // A = A.reverse()
-    // console.log(A)
     var colorScale = d3.scale.linear()
         .domain([0,10,20,40,100])
         .range(A);
 
-          console.log(dimRet,w)
-    // var colorScale = d3.scale.linear()
-    //     .domain([0,5,10,15,20,25,30,40,100])
-    //     .range(["#07203D","#213B59","#4F6A89","#7C98B8","#A9C7E8","#7C98B8","#4F6A89","#213B59","#07203D"]);
-         // .domain([0, 30, 100])
-         // .range(["#07203D", "#213B59", colorHigh]);
     var svg = d3.select("#"+extraParam.htmlID).append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -160,46 +140,6 @@ function makeD3Retentiongraphs(error, data, extraParam) {
       .text("Scale")
       .attr('fill', textSlideColor);;
 
-// var span_element = document.createElement("span");
-// document.body.appendChild(span_element);
-
-// var svgTmp = d3.select(span_element).append("svg")
-//         .attr("width", width + margin.left + margin.right)
-//         .attr("height", height + margin.top + margin.bottom)
-//       .append("g")
-//         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-// var text = svgTmp.append("text")
-//             .text(extraParam.title)
-//             .attr("text-anchor",'middle')
-//             .attr("x", width/2)
-//             .attr("y", -width/10)
-//             .style("font-weight", "bold");
-
-//     svg.append('g').append("text")
-
-//       .attr("class", "title")
-//       .attr("text-anchor",'middle')
-//       .attr("x", width/2)
-//       .attr("y", -height/10)
-//       //.attr("id", "cocu")
-//       .text(extraParam.title)
-//       // .attr("dy", ".35em")
-//       .style("fill", extraParam.titleColor)
-//       .style("font-weight", "bold")
-
-//       .style("font",
-//         function(d){
-//         title_fontSize = height/10
-//         title_width = width + margin.left + margin.right+1
-//         while(title_width*1.1>=width){
-//             text.style("font",title_fontSize+"px "+fontName)
-//             title_width = text.node().getBBox().width
-//             title_fontSize = title_fontSize - 1
-//         }
-//        return title_fontSize+"px "+fontName
-//       })
-//       .style("font-weight","bold");
     makeSlideTitle(svg,width/2,-height/10,width,height,margin,extraParam)
 
 
