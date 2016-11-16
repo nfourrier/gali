@@ -194,7 +194,6 @@ function chartLine(error,dataJson,extraParam){
         .range([height, 0]);
     var xAxis = d3.svg.axis().scale(x)
         .orient("bottom")
-        // .ticks(5);
 
 
     var yAxis = d3.svg.axis().scale(y)
@@ -245,10 +244,8 @@ function chartLine(error,dataJson,extraParam){
             .attr('cx', function (v) { return x(v[extraParam.xKey]); })
             .attr('cy', function (v) { return y(v[extraParam.yKey]); })
             .style("opacity", 1)
-            .style("stroke", function() { // Add the colours dynamically
-                return d.color = color(i); })
+            .style("stroke", function() {return d.color = color(i); })
             .style("stroke-width", 0.55*height/(100+2.5*xList.length))
-            // .style("fill-opacity","0.0")
             .attr('fill',textSlideColor)
             .attr('r', 1.5*height/(100+2.5*xList.length))
             .on("mouseover",mouseover)
@@ -258,8 +255,6 @@ function chartLine(error,dataJson,extraParam){
 
             svg.append("text")
             .attr("transform","translate(" + (-0.1*width+i*0.2*width) + "," +-(0.05*height) + ")")
-            // .attr("x", (legendSpace/2)+i*legendSpace)  // space legend
-            // .attr("y", height + (margin.bottom/2)+ 5)
             .attr("class", "legend")    // style the legend
             .style("fill", function() { // Add the colours dynamically
                 return d.color = color(i); })
