@@ -79,6 +79,131 @@ $("document").ready(function(){
                         "label")
                     .await(histoControl)
             addNewSlide('histoControl_akl')
+
+queue()
+                    .defer(d3.json, "/loadADDjson/"+game_name+"/histo")
+                    .defer(extraGraphParam,
+                        $(".slides").width()/3,
+                        $(".slides").height()/3,
+                        stackBarColor,
+                        titleSlideColor,
+                        "Patient vs. Control",
+                        "histoControl_akl2",
+                        game_name,
+                        "ind",
+                        ['control_mean','control_min','control_max',"patient"],
+                        "label")
+                    .await(histoControl)
+queue()
+                    .defer(d3.json, "/loadADDjson/"+game_name+"/histo")
+                    .defer(extraGraphParam,
+                        $(".slides").width()/3,
+                        $(".slides").height()/3,
+                        stackBarColor,
+                        titleSlideColor,
+                        "Patient vs. Control",
+                        "histoControl_akl3",
+                        game_name,
+                        "ind",
+                        ['control_mean','control_min','control_max',"patient"],
+                        "label")
+                    .await(histoControl)
+queue()
+                    .defer(d3.json, "/loadADDjson/"+game_name+"/knee")
+                    .defer(extraGraphParam,
+                        $(".slides").width()/3,
+                        $(".slides").height()/3,
+                        stackBarColor,
+                        titleSlideColor,
+                        "Patient vs. Control",
+                        "testControl_akl1",
+                        game_name,
+                        "ind",
+                        ['control_mean','control_min','control_max',"patientA",'patientB'],
+                        "")
+                    .await(chartControl)
+queue()
+                    .defer(d3.json, "/loadADDjson/"+game_name+"/knee")
+                    .defer(extraGraphParam,
+                        $(".slides").width()/3,
+                        $(".slides").height()/3,
+                        stackBarColor,
+                        titleSlideColor,
+                        "Patient vs. Control",
+                        "testControl_akl2",
+                        game_name,
+                        "ind",
+                        ['control_mean','control_min','control_max',"patientA",'patientB'],
+                        "")
+                    .await(chartControl)
+queue()
+                    .defer(d3.json, "/loadADDjson/"+game_name+"/knee")
+                    .defer(extraGraphParam,
+                        $(".slides").width()/3,
+                        $(".slides").height()/3,
+                        stackBarColor,
+                        titleSlideColor,
+                        "Patient vs. Control",
+                        "testControl_akl3",
+                        game_name,
+                        "ind",
+                        ['control_mean','control_min','control_max',"patientA",'patientB'],
+                        "")
+                    .await(chartControl)
+queue()
+                    .defer(d3.json, "/loadADDjson/"+game_name+"/knee")
+                    .defer(extraGraphParam,
+                        $(".slides").width()/3,
+                        $(".slides").height()/3,
+                        stackBarColor,
+                        titleSlideColor,
+                        "Patient vs. Control",
+                        "testControl_akl4",
+                        game_name,
+                        "ind",
+                        ['control_mean','control_min','control_max',"patientA",'patientB'],
+                        "")
+                    .await(chartControl)
+queue()
+                    .defer(d3.json, "/loadADDjson/"+game_name+"/knee")
+                    .defer(extraGraphParam,
+                        $(".slides").width()/3,
+                        $(".slides").height()/3,
+                        stackBarColor,
+                        titleSlideColor,
+                        "Patient vs. Control",
+                        "testControl_akl5",
+                        game_name,
+                        "ind",
+                        ['control_mean','control_min','control_max',"patientA",'patientB'],
+                        "")
+                    .await(chartControl)
+queue()
+                    .defer(d3.json, "/loadADDjson/"+game_name+"/knee")
+                    .defer(extraGraphParam,
+                        $(".slides").width()/3,
+                        $(".slides").height()/3,
+                        stackBarColor,
+                        titleSlideColor,
+                        "Patient vs. Control",
+                        "testControl_akl6",
+                        game_name,
+                        "ind",
+                        ['control_mean','control_min','control_max',"patientA",'patientB'],
+                        "")
+                    .await(chartControl)
+var divID = 'histoControl_akl3'
+var divID2 = 'histoControl_akl2'
+var divID3 = "testControl_akl1"
+var divID4 = "testControl_akl2"
+var divID5 = "testControl_akl3"
+var divID6 = "testControl_akl4"
+var divID7 = "testControl_akl5"
+var divID8 = "testControl_akl6"
+var AA = '<section transition="zoom"> ' + '<div class="slideGraph">'+'<div id="'+divID+'">  '+ '</div>' + '<div id="'+divID2+'">  '+ '</div>'+ '</div>' + '</section>'
+var AA = '<section transition="zoom"> ' + '<div class="slideGraph" id="'+divID+'">  '+ '</div>' + '<div class="slideGraph" id="'+divID2+'">  '+ '</div>'+ '<div class="slideGraph" id="'+divID3+'">  '+ '</div>'+ '<div class="slideGraph" id="'+divID4+'">  '+ '</div>'+ '<div class="slideGraph" id="'+divID5+'">  '+ '</div>'+ '<div class="slideGraph" id="'+divID6+'">  '+ '</div>'+ '<div class="slideGraph" id="'+divID7+'">  '+ '</div>' + '</section>'
+    $('.slides').append($(AA))
+
             queue()
                     .defer(d3.json, "/loadADDjson/"+game_name+"/knee")
                     .defer(extraGraphParam,
