@@ -292,12 +292,8 @@ var AA = '<section transition="zoom"> ' + '<div class="slideGraph" id="'+divID+'
             .defer(d3.json, getDailyFlaskRoute(game_name,todayDate))
             .defer(extraParamCircles, panelCircles, 'daily')
             .await(makePanel)
-
-        // console.log(PM)
         PM = null
-        // console.log(PM)
-        //makeAKLgraphs("ok",jsonData1,jsonData2)
-        // timeoutID_panelMaster = setTimeout(panelMaster,dailyCircleTimer);
+
     }
     function slideDailyMaster(){
        var PM = queue()
@@ -305,16 +301,11 @@ var AA = '<section transition="zoom"> ' + '<div class="slideGraph" id="'+divID+'
             .defer(d3.json, getDailyFlaskRoute(game_name,todayDate))
             .defer(extraParamCircles, slideDCircles, 'daily')
             .await(makePanel)
-
-        // console.log(PM)
-        PM = null
-        // console.log(PM)
-        //makeAKLgraphs("ok",jsonData1,jsonData2)
+    PM = null
         timeoutID_panelMaster = setTimeout(slideDailyMaster,dailyCircleTimer);
     }
 
     function slideWeeklyMaster(){
-        // console.log("panel function - update circles")
         var DS = queue()
             .defer(d3.json, getWeeklyFlaskRoute(game_name,dayM7Date))
             .defer(d3.json, getWeeklyFlaskRoute(game_name,todayDate))
