@@ -1,1 +1,1 @@
-source activate py34 ; celery -A myApp.celery -l INFO worker ; celery -A myApp.celery -l INFO beat ; ping 127.0.0.1 -n 3 > nul ; celery -A myApp.celery flower --port=5555
+nohup celery -A myApp.celery -l INFO worker > worker.out ; nohup celery -A myApp.celery -l INFO beat > scheduler.out;  nohup celery -A myApp.celery flower --port=5555 > flower.out
