@@ -19,9 +19,7 @@ if(last_param=="iaa"){
     colorTheme1 = "#535353" //text
     colorTheme2 = "#f7f7f7" //top
     colorTheme3 = "#ecf2f6" //left
-    // colorTheme3 = 'linear-gradient(0deg, #CCCCCC, #F0F0F0)'
     colorTheme4 = "#ffffff" //slide
-    // colorTheme4 = 'linear-gradient(0deg, #CCCCCC, #F0F0F0)'
     stackBarColor = ["#8297a8","#9fc2c4","#facdae","#fc9d9b","#f3565d"]
     circleColor = ['#b2a6e5','#15a4fa','#cfdbe2']
     colorTriangleUp = "#18bd35"
@@ -233,32 +231,6 @@ function applyThemeCSS(){
         })
     })
 
-    // console.log($(".reveal .controls .navigate-left, .reveal .controls .navigate-left.enabled"))
-    // revealLeftRight = ["left","right","up","down"]
-    // revealLeftRight_inv = ["right","left","bottom","top"]
-    // revealLeftRight.forEach(function(d,v){
-    //     d_inv = revealLeftRight_inv[v]
-    //     border_color = "border-"+d_inv+"-color"
-    //     reveal_object = ".reveal .controls .navigate-"+d+", .reveal .controls .navigate-"+d+".enabled"
-    //     console.log(d,d_inv)
-    //     console.log(reveal_object,border_color)
-
-    //     $(reveal_object).css({
-    //         border_color: revealColor
-    //     })
-    //     console.log($(reveal_object))
-
-    //     $(".reveal .controls .navigate-"+d+".enabled")
-    //     .mouseenter(function(){
-    //         $(this).css({
-    //             border_color: revealColorHover
-    //         })
-    //     }).mouseleave(function(){
-    //         $(this).css({
-    //             border_color: revealColor
-    //         })
-    //     })
-    // })
 
 
 }
