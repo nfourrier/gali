@@ -1,3 +1,4 @@
+## requires package pandas-datareader
 from pandas_datareader import data as web
 import datetime as dt
 utc = dt.datetime.utcnow()
