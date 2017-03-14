@@ -63,11 +63,12 @@ PROJECT = {
 
         }
     },
-        'basic':{
-        'path': ['data','basic','tasks'],
-        'name': 'SQL requests',
-        'desc': 'run SQL predefined SQL requests',
-        'opt' : A
-    },
+    ### cx_Oracle is required to import basic, be sure you have it
+    #     'basic':{
+    #     'path': ['data','basic','tasks'],
+    #     'name': 'SQL requests',
+    #     'desc': 'run SQL predefined SQL requests',
+    #     'opt' : A
+    # },
 }
 

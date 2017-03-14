@@ -36,7 +36,9 @@ To execute this program (tasks.py):
     - executer python (python tasks.py)
     - le site se trouve sur http://localhost:5000/test
     - le log se trouve sur http://localhost:5555/dashboard
-
+    - cx_Oracle is required to run this program (it is imported in basic)
+    - data/project contains the link to the various project
+    (basic project is commented at the moment since it requires cx_Oracle) 
 '''
 
 
